@@ -1,4 +1,5 @@
 let HomeController = require('./../controllers/HomeController');
+let OffreController = require('./../controllers/OffreController');
 let ConnexionController = require('./../controllers/ConnexionController');
 let CVController = require('./../controllers/CVController');
 
@@ -16,6 +17,7 @@ module.exports = function(app){
   app.get('/CreationCV/Modele/:id',CVController.IndexCreationCV);
   app.post('/CreationCV/TelechargerCV',CVController.TelechargerCV);
 
+  app.get('/CreationOffre',OffreController.Index);
 
 
 // tout le reste
