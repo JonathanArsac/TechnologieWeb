@@ -18,7 +18,7 @@ module.exports = function(app){
   app.post('/CreationCV/TelechargerCV',CVController.TelechargerCV);
 
   app.get('/CreationOffre',OffreController.Index);
-
+  app.post('/CreationOffre',OffreController.CreationOffre);
 
 // tout le reste
   app.get('*', HomeController.Index);

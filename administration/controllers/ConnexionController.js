@@ -19,9 +19,11 @@ module.exports.Connexion = function(request, response){
       if(result[0]==null){
         request.session.connexion = 0;
       }else{
+          request.session.idUtilisateur = result[0].idUtilisateur;
           request.session.demandeur=result[0].demandeur;
           request.session.connexion = 1;
-          console.log(result[0]);
+      
+             console.log(request.session.idUtilisateur);
           request.session.nomPrenom = result[0].nom+" "+result[0].prenom;
       }
 
@@ -41,10 +43,11 @@ module.exports.CreationCompte = function(request, response){
    data.password=hashPassword;
 
    console.log(data);
-       model.ajoutUtilisateur(data,function(err,result){
-     });
-     request.session.connexion = 1;
-      request.session.demandeur = request.body.demandeur;
+   model.ajoutUtilisateur(data,function(err,result){});
+   model.getLoginEtPassword(data.login,hashPassword, function (err, result) {request.session.idUtilisateur = result[0].idUtilisateur;});
+   request.session.connexion = 1;
+   console.log(request.session.idUtilisateur);
+   request.session.demandeur = request.body.demandeur;
       request.session.nomPrenom = request.body.nom + " " + request.body.prenom;
        response.redirect('/home');
 

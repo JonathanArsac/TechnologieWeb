@@ -15,7 +15,7 @@ module.exports.getLoginEtPassword = function (login,password,callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT login,password,demandeur,nom,prenom FROM UTILISATEUR WHERE login='"+login+"' AND password ='"+password+"'";
+						let sql ="SELECT idUtilisateur,login,password,demandeur,nom,prenom FROM UTILISATEUR WHERE login='"+login+"' AND password ='"+password+"'";
 						console.log (sql);
             connexion.query(sql, callback);
             // la connexion retourne dans le pool

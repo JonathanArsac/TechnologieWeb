@@ -15,11 +15,11 @@ module.exports.CreationOffre = function(request, response){
    response.title = 'Création Offre';
    var data = request.body;
 
-
+data.idUtilisateur = request.session.idUtilisateur;
    console.log(data);
-       model.ajoutUtilisateur(data,function(err,result){
+       model.ajoutOffre(data,function(err,result){
      });
 
-       response.redirect('/home');
+       response.redirect('/');
 
    };
