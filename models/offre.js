@@ -25,3 +25,21 @@ module.exports.ajoutOffre = function (data,callback) {
          }
       });
 };
+
+
+
+module.exports.recupererListeOffreRecruteur = function (recruteurNum, callback) {
+   // connection à la base
+	db.getConnection(function(err, connexion){
+        if(!err){
+        	  // s'il n'y a pas d'erreur de connexion
+        	  // execution de la requête SQL
+						let sql ="SELECT idRecruteur,intitule,domaine,descriptionOffre,mission,profilRecherche,typeContrat,typeOccupation,dureeSemaine,lieu,fourchetteSalariale,contrainte,dateDebut,dateFin FROM offre WHERE idRecruteur=?";
+						console.log (sql);
+            connexion.query(sql,recruteurNum,callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+         }
+      });
+};

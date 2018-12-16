@@ -2,9 +2,22 @@ let model = require('../../models/offre.js');
 let async = require("async");
 module.exports.Index = function(request, response){
 
-   response.title = 'Creation Offre';
+        response.title = 'Accueil Offre';
 
-response.render('creationOffre', response);
+
+
+            model.recupererListeOffreRecruteur(request.session.idUtilisateur,function(err,result){
+              if (err) {
+                  // gestion de l'erreur
+                  console.log(err);
+                  return;
+              }
+              console.log(result);
+              response.listeOffres=result;
+              response.render('accueilCreationOffre', response);
+
+             });
+
 
 };
 

@@ -17,6 +17,7 @@ module.exports = function(app){
   app.get('/CreationCV/Modele/:id',CVController.IndexCreationCV);
   app.post('/CreationCV/TelechargerCV',CVController.TelechargerCV);
 
+  app.get('/AccueilOffre',OffreController.Index);
   app.get('/CreationOffre',OffreController.Index);
   app.post('/CreationOffre',OffreController.CreationOffre);
 
