@@ -1,0 +1,52 @@
+
+/*
+
+ CONNEXION
+*/
+
+#containerConnexion{
+  border-right:solid 3px black;
+}
+
+#bodyConnexion{
+    background:none;
+}
+
+#containerConnexion div, #containerConnexion h1 {
+margin-bottom: 2%;
+}
+
+
+#containerConnexion input[type="submit"],#containerCreationCompte input[type="submit"]{
+  cursor:pointer;
+}
+
+
+
+
+/*
+
+
+CREATION CV
+
+*/
+
+
+#containerCreationCV{
+  border:1px solid #ced4da;
+  border-radius: 25px;
+  padding:2%;
+  color:#495057;
+
+}
+
+.zoneCV{
+  display:none;
+  border-radius: 25px;
+  border:1px solid #ced4da;
+  margin-bottom: 2%;
+}
+
+#zoneEnTete{
+  display:block;
+}

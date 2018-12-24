@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<title> {{title}}</title>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/x-icon" href="/image/favicon.png" />
+	<!-- <link rel="stylesheet" href="/dist/css/lightbox.min.css" /> -->
+	<link rel="stylesheet" href="/css/structure.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+</head>
+
+
+
+{{#ifCond session.connexion '==' 1  }}
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;">
+		<a class="navbar-brand" href="javascript:void(0)">Accueil</a>
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navb">
+			<ul class="navbar-nav mr-auto">
+				{{#ifCond session.demandeur '==' 0  }}
+				<li class="nav-item">
+					<a class="nav-link" href="/AccueilOffre">Vos projets</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="javascript:void(0)">Vos candidats</a>
+				</li>
+				{{else}}
+				<li class="nav-item">
+					<a class="nav-link" href="/CreationCV">Vos CV</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="javascript:void(0)">Vos lettres de motivations</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="javascript:void(0)">Vos candidatures</a>
+				</li>
+				{{/ifCond}}
+			</ul>
+			<form action="/Deconnexion" class="form-inline my-2 my-lg-0">
+				<label class=" ml-2" style="color:white;">{{session.nomPrenom}}</label>
+				<button class="btn btn-success my-2 ml-2 my-sm-0" type="submit">Déconnexion</button>
+			</form>
+		</div>
+	</nav>
+	<div id="container">
+
+
+		<div id="contenu">
+			<br/>
+			<br/>
+				{{{body}}}
+		</div>
+
+	</div>
+	</body>
+
+{{else}}
+<body id="bodyConnexion">
+	<div class="container-fluid">
+
+<div class="row">
+	<div class="col-sm-12 text-center">
+			<h1 class="jumbotron"> Site CV,LM et offres d'emploi </h1>
+			</div>
+</div>
+<div class="row">
+
+
+	<div class="col-sm-12 col-md-6 " id="containerConnexion">
+		<p>
+			Vous avez déjà un compte ?
+		</p>
+
+		<form method="POST" action="/Connexion">
+			<div class="form-group">
+				<label> Login : </label>	<input class="form-control" type="text" name="loginConnexion">
+			</div>
+			<div class="form-group">
+				<label> Mot de passe : </label>	<input class="form-control" type="password" name="passwordConnexion" >
+			</div>
+
+			<input class="btn btn-primary" type="submit" value="Connexion">
+		</form>
+	</div>
+
+
+	<div  class="col-sm-12 col-md-6 " id="containerCreationCompte" >
+		<p>Vous n'avez pas de compte ?</p>
+		<form   method="POST" action="/CreationCompte">
+			<div class="form-group">
+				<label>Etes vous un :</label>
+				<div class="form-check">
+	     		<label class="form-check-label" for="radio1">
+	       		<input type="radio" class="form-check-input" id="radio1" name="demandeur" value="1" checked>Demandeur
+	      	</label>
+	   		</div>
+	    	<div class="form-check">
+	     		<label class="form-check-label" for="radio2">
+	        	<input type="radio" class="form-check-input" id="radio2" name="demandeur" value="0">Recruteur
+	     		</label>
+	   		</div>
+			</div>
+			<div class="form-group">
+				<label> Nom : </label>
+				<input class="form-control" type="text" name="nom" required>
+			</div>
+			<div class="form-group">
+				<label> Prénom : </label>
+				<input class="form-control" type="text" name="prenom" required>
+			</div>
+			<div class="form-group">
+				<label> Adresse mail : </label>
+				<input class="form-control" type="email" pattern=".+@+." size="30" name="mail" required>
+			</div>
+			<div class="form-group">
+				<label> Login : </label>
+				<input class="form-control" type="text" name="login" required>
+			</div>
+			<div class="form-group">
+				<label> Mot de passe : </label>
+				<input class="form-control" type="password" name="password" required>
+			</div>
+			<input class="btn btn-primary" type="submit" value="Créer">
+		</form>
+
+
+	</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+{{/ifCond}}
+
+
+
+
+</html>

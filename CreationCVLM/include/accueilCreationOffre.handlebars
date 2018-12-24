@@ -1,0 +1,32 @@
+<h1> Accueil Creation Offre </h1>
+
+
+<div class="tableOffre">
+<table border="1" >
+  <thead>
+  <tr><th> intitule </th> <th> domaine </th> <th> descriptionOffre </th> <th> mission </th> <th> profilRecherche </th><th> typeContrat </th><th> typeOccupation </th><th> dureeSemaine </th><th> lieu </th><th> fourchetteSalariale </th><th> contrainte </th><th> dateDebut </th><th> dateFin </th><th> X </th></tr>
+  </thead>
+  <tbody>
+    {{#each listeOffres}}
+    <tr>
+     <td> {{this.intitule}} </td>
+      <td> {{this.domaine}} </td>
+      <td> {{this.descriptionOffre}} </td>
+      <td> {{this.mission}} </td>
+      <td> {{this.profilRecherche}} </td>
+      <td> {{this.typeContrat}} </td>
+      <td> {{this.typeOccupation}} </td>
+      <td> {{this.dureeSemaine}} </td>
+      <td> {{this.lieu}} </td>
+      <td> {{this.fourchetteSalariale}} </td>
+      <td> {{this.contrainte}} </td>
+      <td> {{formatDate this.dateDebut 'DD/MM/YYYY'}} </td>
+      <td> {{formatDate this.dateFin 'DD/MM/YYYY'}} </td>
+      <td> Modifier   </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<a class="btn btn-primary" href="/creationOffre" role="button">Créer offre</a>
+</div>
