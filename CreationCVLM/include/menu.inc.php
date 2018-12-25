@@ -27,10 +27,9 @@ if (isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
 				</li>
 
 			</ul>
-			<form action="/Deconnexion" class="form-inline my-2 my-lg-0">
-				<label class=" ml-2" style="color:white;"></label>
-				<button class="btn btn-success my-2 ml-2 my-sm-0" type="submit">Déconnexion</button>
-			</form>
+			<li>
+				  <a href="index.php?page=14">   <?php echo "<span> Utilisateur : </span>".$_SESSION['identifiantPersonne']."   Déconnexion";?></a>
+			</li>
 		</div>
 	</nav>
 	<?php

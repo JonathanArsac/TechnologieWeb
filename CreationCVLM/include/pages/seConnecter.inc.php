@@ -1,12 +1,67 @@
 
 <?php
 
-echo  $_SESSION['connexion'];
+
 $pdo = new Mypdo();
 $personneManager = new PersonneManager ($pdo);  // toutes les requêtes sont dans le manager
 if (!isset($_SESSION['connexion'])){
   $_SESSION['connexion']=false;
 }
+
+
+
+if (isset($_POST["motDePasseConnexion"]) && !empty($_POST["motDePasseConnexion"])){
+  $sel = "48@!alsd";
+  $motDePasse = $_POST['motDePasseConnexion'];
+  $motDePasseMD5 = md5(md5($motDePasse).$sel);
+  $connexionPersonne = $personneManager -> getPersonneParIdentifiantEtMotDePasse($_POST["identifiantConnexion"],$motDePasseMD5);
+
+  if ($connexionPersonne!=NULL){
+    $_SESSION['connexion']=true;
+    $_SESSION['identifiantPersonne']=$connexionPersonne[0]->getIdentifiantPersonne();
+    $_SESSION['demandeurPersonne']=$connexionPersonne[0]->getDemandeurPersonne();
+    $_SESSION['numeroPersonne']=$connexionPersonne[0]->getNumeroPersonne();
+  }
+  else{
+    echo '<img src="image/erreur.png" alt="croix"> Problème identifiant ou mot de passe';
+  }
+
+}
+if (isset($_POST["motDePasseCreation"]) && !empty($_POST["motDePasseCreation"])) {
+  $sel = "48@!alsd";
+  $motDePasse = $_POST['motDePasseCreation'];
+  $motDePasseMD5 = md5(md5($motDePasse).$sel);
+  $personneArray =[
+    "nomPersonne"=>$_POST['nomCreation'],
+    "prenomPersonne"=>$_POST['prenomCreation'],
+    "mailPersonne"=>$_POST['mailCreation'],
+    "identifiantPersonne"=>$_POST['identifiantCreation'],
+    "motDePassePersonne"=>$motDePasseMD5,
+    "demandeurPersonne"=>$_POST['demandeurCreation']
+  ];
+  $personne= new Personne($personneArray);
+  $personneManager->ajouter($personne);
+  $_SESSION['connexion']=true;
+  $_SESSION['identifiantPersonne']=$_POST['identifiantCreation'];
+  $_SESSION['demandeurPersonne']=$_POST['demandeurCreation'];
+  $numeroPersonneCree = $personneManager -> getPersonneParIdentifiantEtMotDePasse($_POST['identifiantCreation'],$motDePasseMD5);
+  $_SESSION['numeroPersonne']=$numeroPersonneCree[0]->getNumeroPersonne();
+
+}
+if(isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
+?>
+ <h1>Pour vous connecter</h1>
+ <div class="messageConnexion">
+   <p><img src="image/valid.png" alt="coche"> Vous avez bien été connecté ! </p>
+   <p> Redirection automatique dans 2 secondes. </p>
+ </div>
+
+<?php
+   header("refresh:2;url=index.php?page=1");
+ }
+
+
+
 
 if (isset($_SESSION['connexion']) && $_SESSION['connexion']==false ){
  ?>
@@ -76,56 +131,6 @@ if (isset($_SESSION['connexion']) && $_SESSION['connexion']==false ){
  </div>
 
 <?php
-
-}
- if(isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
-?>
-  <h1>Pour vous connecter</h1>
-  <div class="messageConnexion">
-    <p><img src="image/valid.png" alt="coche"> Vous avez bien été connecté ! </p>
-    <p> Redirection automatique dans 2 secondes. </p>
-  </div>
-
-<?php
-    header("refresh:2;url=index.php?page=1");
-  }
-
-if (isset($_POST["motDePasseConnexion"]) && !empty($_POST["motDePasseConnexion"])){
-  $sel = "48@!alsd";
-  $motDePasse = $_POST['motDePasseConnexion'];
-  $motDePasseMD5 = md5(md5($motDePasse).$sel);
-  $connexionPersonne = $personneManager -> getPersonneParIdentifiantEtMotDePasse($_POST["identifiantConnexion"],$motDePasseMD5);
-
-  if ($connexionPersonne!=NULL){
-    $_SESSION['connexion']=true;
-    $_SESSION['identifiantPersonne']=$connexionPersonne[0]->getIdentifiantPersonne();
-    $_SESSION['demandeurPersonne']=$connexionPersonne[0]->getDemandeurPersonne();
-    $_SESSION['numeroPersonne']=$connexionPersonne[0]->getNumeroPersonne();
-  }
-  else{
-    echo '<img src="image/erreur.png" alt="croix"> Problème identifiant ou mot de passe';
-  }
-
-}
-if (isset($_POST["motDePasseCreation"]) && !empty($_POST["motDePasseCreation"])) {
-  $sel = "48@!alsd";
-  $motDePasse = $_POST['motDePasseCreation'];
-  $motDePasseMD5 = md5(md5($motDePasse).$sel);
-  $personneArray =[
-    "nomPersonne"=>$_POST['nomCreation'],
-    "prenomPersonne"=>$_POST['prenomCreation'],
-    "mailPersonne"=>$_POST['mailCreation'],
-    "identifiantPersonne"=>$_POST['identifiantCreation'],
-    "motDePassePersonne"=>$motDePasseMD5,
-    "demandeurPersonne"=>$_POST['demandeurCreation']
-  ];
-  $personne= new Personne($personneArray);
-  $personneManager->ajouter($personne);
-  $_SESSION['connexion']=true;
-  $_SESSION['identifiantPersonne']=$_POST['identifiantCreation'];
-  $_SESSION['demandeurPersonne']=$_POST['demandeurCreation'];
-  $numeroPersonneCree = $personneManager -> getPersonneParIdentifiantEtMotDePasse($_POST['identifiantCreation'],$motDePasseMD5);
-  $_SESSION['numeroPersonne']=$numeroPersonneCree[0]->getNumeroPersonne();
 
 }
 ?>
