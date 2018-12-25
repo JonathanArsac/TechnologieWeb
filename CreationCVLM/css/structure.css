@@ -1,28 +1,90 @@
+#corps,#footer,body,html{
+  background-color: #E5E6E8;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 180;
+  color:#666666;
+
+}
+html{
+  height:100%;
+}
+
+
+h1,h2,h3,h4,h5{
+ color:#ff5950;
+}
 
 /*
 
  CONNEXION
 */
 
-#containerConnexion{
-  border-right:solid 3px black;
+#containerCreationCompte,#containerConnexion {
+  border: 1px solid #E5E6E8;
+  box-shadow:0 0 8px #ccc;
+  border-radius:6px;
+  background: white;
+  padding-bottom:2%;
+  padding-top:1%;
+}
+#containerCreationCompte>h5,#containerConnexion>h5 {
+  border-bottom: 1px solid #E5E6E8;
+  padding-bottom: 2%;
+  margin-bottom:2.5%;
+
 }
 
-#bodyConnexion{
-    background:none;
+#containerCreationCompte input[type=submit],#containerConnexion input[type=submit] {
+color:white;
+background-color:#ff5950;
+border-radius:15px;
+text-align:center;
+padding-left:20%;
+padding-right:20%;
+display: block;
+  margin-left: auto;
+  margin-right:auto;
+margin-top:5%;
+
 }
 
-#containerConnexion div, #containerConnexion h1 {
-margin-bottom: 2%;
+#titreConnexion {
+  margin-bottom: 2%;
+  margin-top: 2%;
+  opacity:0.6;
+
+}
+#titreConnexion span {
+color:#666666;
+opacity:0.9;
+font-weight:100;
 }
 
 
-#containerConnexion input[type="submit"],#containerCreationCompte input[type="submit"]{
-  cursor:pointer;
+.gestionConnexion{
+  border: 1px solid #E5E6E8;
+  box-shadow:0 0 8px #ccc;
+  border-radius:6px;
+  background: white;
+  padding-bottom:2%;
+  padding-top:1%;
+margin-top:18%;
+
 }
 
+.gestionConnexion span{
+font-weight:500;
+font-height:25px;
+color:#ff5950;
 
+}
+.gestionConnexion>p{
+padding-top:2%;
 
+}
+#footer{
+  margin-top:10%;
+}
 
 /*
 

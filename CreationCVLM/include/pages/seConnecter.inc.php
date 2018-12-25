@@ -1,14 +1,11 @@
 
 <?php
 
-
 $pdo = new Mypdo();
 $personneManager = new PersonneManager ($pdo);  // toutes les requêtes sont dans le manager
 if (!isset($_SESSION['connexion'])){
   $_SESSION['connexion']=false;
 }
-
-
 
 if (isset($_POST["motDePasseConnexion"]) && !empty($_POST["motDePasseConnexion"])){
   $sel = "48@!alsd";
@@ -25,7 +22,6 @@ if (isset($_POST["motDePasseConnexion"]) && !empty($_POST["motDePasseConnexion"]
   else{
     echo '<img src="image/erreur.png" alt="croix"> Problème identifiant ou mot de passe';
   }
-
 }
 if (isset($_POST["motDePasseCreation"]) && !empty($_POST["motDePasseCreation"])) {
   $sel = "48@!alsd";
@@ -50,10 +46,10 @@ if (isset($_POST["motDePasseCreation"]) && !empty($_POST["motDePasseCreation"]))
 }
 if(isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
 ?>
- <h1>Pour vous connecter</h1>
- <div class="messageConnexion">
-   <p><img src="image/valid.png" alt="coche"> Vous avez bien été connecté ! </p>
-   <p> Redirection automatique dans 2 secondes. </p>
+
+ <div class="col-md-6 offset-3 gestionConnexion  text-center">
+   <p> Vous avez bien été <span>connecté </span> !<br />
+   <strong> Redirection automatique dans 2 secondes.</strong> </p>
  </div>
 
 <?php
@@ -61,20 +57,17 @@ if(isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
  }
 
 
-
-
 if (isset($_SESSION['connexion']) && $_SESSION['connexion']==false ){
  ?>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-12 text-center">
-      <h1 class="jumbotron"> Site CV,LM et offres d'emploi </h1>
+    <div id="titreConnexion" class="col-sm-12 text-center">
+      <h1 ><span> Projet</span> web </h1>
     </div>
   </div>
-
   <div class="row">
-    <div class="col-sm-12 col-md-6 " id="containerConnexion">
-     <p> Vous avez déjà un compte ? </p>
+    <div class="col-sm-12 col-md-4 offset-md-1 " id="containerConnexion">
+     <h5>Vous avez déjà un compte ?</h5>
      <form method="POST" action="#">
        <div class="form-group">
          <label> Login : </label>	<input class="form-control" type="text" name="identifiantConnexion">
@@ -82,12 +75,12 @@ if (isset($_SESSION['connexion']) && $_SESSION['connexion']==false ){
        <div class="form-group">
          <label> Mot de passe : </label>	<input class="form-control" type="password" name="motDePasseConnexion" >
        </div>
-       <input class="btn btn-primary" type="submit" value="Connexion">
+       <input class="btn" type="submit" value="Connexion">
      </form>
     </div>
 
-     <div  class="col-sm-12 col-md-6 " id="containerCreationCompte" >
-       <p>Vous n'avez pas de compte ?</p>
+     <div  class="col-sm-12 col-md-4 offset-md-2 " id="containerCreationCompte" >
+       <h5>Vous n'avez pas de compte ?</h5>
        <form   method="POST" action="#">
          <div class="form-group">
            <label>Etes vous un :</label>
@@ -122,15 +115,11 @@ if (isset($_SESSION['connexion']) && $_SESSION['connexion']==false ){
            <label> Mot de passe : </label>
            <input class="form-control" type="password" name="motDePasseCreation" required>
          </div>
-         <input class="btn btn-primary" type="submit" value="Créer">
+         <input class="btn " type="submit" value="Créer">
        </form>
-
-
      </div>
    </div>
  </div>
-
 <?php
-
 }
 ?>

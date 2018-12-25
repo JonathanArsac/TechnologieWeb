@@ -41,7 +41,7 @@ class PersonneManager{
 
 	public function getPersonneParIdentifiantEtMotDePasse($identifiantPersonne,$motDePassePersonne) {
 			$listePersonnes = array(); // marche même sans  (tableau d'objets)
-			$sql = 'SELECT numeroPersonne,nomPersonne,prenomPersonne,demandeurPersonne FROM personne where identifiantPersonne="'.$identifiantPersonne.'" and motDePassePersonne="'.$motDePassePersonne.'"';
+			$sql = 'SELECT numeroPersonne,identifiantPersonne,nomPersonne,prenomPersonne,demandeurPersonne FROM personne where identifiantPersonne="'.$identifiantPersonne.'" and motDePassePersonne="'.$motDePassePersonne.'"';
 
 			$requete=$this->db->prepare($sql);
 			$requete->execute();

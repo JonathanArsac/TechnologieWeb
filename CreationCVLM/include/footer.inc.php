@@ -1,7 +1,7 @@
-<div class="container-fluid">
-  <div class="row " id="footer">
+<div class="container-fluid" id="footer">
+  <div class="row " >
     <div class="col-sm-12">
-      <p class="jumbotron">
+      <p >
           © Jonathan ARSAC, Youenn DROAL
       </p>
     </div>
