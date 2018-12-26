@@ -1,3 +1,5 @@
+
+
 #corps,#footer,body,html{
   background-color: #E5E6E8;
   font-family: 'Roboto', sans-serif;
@@ -80,35 +82,21 @@ color:#ff5950;
 }
 .gestionConnexion>p{
 padding-top:2%;
-
 }
 #footer{
   margin-top:10%;
 }
 
+
+
+
 /*
 
-
-CREATION CV
+ACCUEIL
 
 */
 
+div#myCarousel{
+  height:300px;
 
-#containerCreationCV{
-  border:1px solid #ced4da;
-  border-radius: 25px;
-  padding:2%;
-  color:#495057;
-
-}
-
-.zoneCV{
-  display:none;
-  border-radius: 25px;
-  border:1px solid #ced4da;
-  margin-bottom: 2%;
-}
-
-#zoneEnTete{
-  display:block;
 }

@@ -30,11 +30,14 @@ $dernieresOffres = $offreManager->getLesDernieresOffres(); //tableau de citation
 				foreach ($dernieresOffres as $derniereOffre){
 
 					echo "<div class=\"carousel-item"; if($i==0){echo " active";} echo "\">";
-								echo "<h4>".$derniereOffre->getIntituleOffre()."</h4>";
-								echo "<p >".$derniereOffre->getNumeroRecruteur()."</p>";
-								echo $derniereOffre->getLieuOffre();
-								echo $derniereOffre->getFourchetteSalarialeOffre();
-								echo $derniereOffre->getDescriptionOffre();
+							echo "<div class=\"texteCarousel col-sm-6 offset-4\" >";
+								echo "<h4 style=\"padding-top:10%;\">".$derniereOffre->getIntituleOffre()."</h4>";
+								echo "<p>".$derniereOffre->getNumeroRecruteur()."</p>";
+								echo "<p>".$derniereOffre->getLieuOffre()."</p>";
+								echo "<p>".$derniereOffre->getFourchetteSalarialeOffre()."</p>";
+								echo "<p>".$derniereOffre->getDescriptionOffre()."</p>";
+								echo "<a href=\"visualiserOffre.inc.php?numeroOffre=".$derniereOffre->getNumeroOffre()."\"> Voir l'offre </a>";
+							echo	"</div>";
 					echo	"</div>";
 
 				$i++;
