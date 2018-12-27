@@ -29,3 +29,5 @@ $offres = $offreManager->getAllOffresDunRecruteur($_SESSION['numeroPersonne']);
     </tr>
   <?php } ?>
   </table>
+
+  <a href="./index.php?page=4">Créer une nouvelle offre</a>

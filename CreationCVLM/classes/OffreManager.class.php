@@ -5,10 +5,10 @@ class OffreManager{
 		$this->db=$db;
 		}
 
-    public function ajouter($offre){
+    public function ajouter($offre,$numRec){
             $requete = $this->db->prepare(
 						'INSERT INTO offre (numeroRecruteur,intituleOffre,domaineOffre,descriptionOffre,missionOffre,profilRechercheOffre,typeContratOffre,typeOccupationOffre,dureeSemaineOffre,lieuOffre,fourchetteSalarialeOffre,contrainteOffre,dateDebutOffre,dateFinOffre)VALUES(:numeroRecruteur,:intituleOffre,:domaineOffre,:descriptionOffre,:missionOffre,:profilRechercheOffre,:typeContratOffre,:typeOccupationOffre,:dureeSemaineOffre,:lieuOffre,:fourchetteSalarialeOffre,:contrainteOffre,:dateDebutOffre,:dateFinOffre)');
-						$requete -> bindValue(':numeroRecruteur',$offre->getNumeroRecruteur());
+						$requete -> bindValue(':numeroRecruteur',$numRec);
             $requete -> bindValue(':intituleOffre',$offre->getIntituleOffre());
 						$requete -> bindValue(':domaineOffre',$offre->getDomaineOffre());
 						$requete -> bindValue(':descriptionOffre',$offre->getDescriptionOffre());

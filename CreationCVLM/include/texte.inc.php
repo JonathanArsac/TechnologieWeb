@@ -29,6 +29,9 @@ case 3:
 	include("pages/parcourirOffre.inc.php");
   break;
 
+case 4:
+	include("pages/creerOffre.inc.php");
+	break;
 
 	case 10:
 		// inclure ici la page choisirModeleCV
