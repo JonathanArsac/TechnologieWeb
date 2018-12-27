@@ -15,7 +15,7 @@ if (isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
 					<a class="nav-link" href="./index.php?page=3">Vos annonces</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Vos candidats</a>
+					<a class="nav-link" href="./index.php?page=6">Vos candidats</a>
 				</li>
 					<?php
 				}else{
