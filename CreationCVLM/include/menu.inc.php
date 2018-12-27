@@ -9,10 +9,10 @@ if (isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
 		<div class="collapse navbar-collapse" id="navb">
 			<ul class="navbar-nav mr-auto">
 				<?php
-				if (isset($_SESSION['demandeur']) && $_SESSION['demandeur']==0 ){
+				if (isset($_SESSION['demandeurPersonne']) && $_SESSION['demandeurPersonne']==0 ){
 				?>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Vos annonces</a>
+					<a class="nav-link" href="./index.php?page=3">Vos annonces</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Vos candidats</a>
