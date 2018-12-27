@@ -2,7 +2,7 @@
 if (isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
 ?>
 	<nav class="navbar navbar-expand-lg navbar-dark " style="margin:24px 0;">
-		<a class="navbar-brand" href="javascript:void(0)">Accueil</a>
+		<a class="navbar-brand" href="./index.php?page=2">Accueil</a>
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -15,7 +15,7 @@ if (isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
 					<a class="nav-link" href="./index.php?page=3">Vos annonces</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Vos candidats</a>
+					<a class="nav-link" href="./index.php?page=6">Vos candidats</a>
 				</li>
 					<?php
 				}else{
@@ -35,7 +35,7 @@ if (isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
 			}
 			?>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Les annonces</a>
+					<a class="nav-link" href="index.php?page=5">Les annonces</a>
 				</li>
 				</ul>
 <ul class="nav navbar-nav navbar-right">
