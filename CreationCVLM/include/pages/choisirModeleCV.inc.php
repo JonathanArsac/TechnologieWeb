@@ -18,7 +18,7 @@
       <div class="col-sm-10  col-md-6 offset-md-3 card">
         <div class="card-header">Modèle 1</div>
          <div class="card-body">Défaut</div>
-         <div class="card-footer"><a href="#">Choisir</a></div>
+         <div class="card-footer"><a href="index.php?page=11&modele=1">Choisir</a></div>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
       <div class="col-sm-10  col-md-6 offset-md-3 card">
         <div class="card-header">Modèle 2</div>
          <div class="card-body">Content</div>
-         <div class="card-footer"><a href="#">Choisir</a></div>
+         <div class="card-footer"><a href="index.php?page=11&modele=2">Choisir</a></div>
       </div>
     </div>
 
@@ -34,14 +34,14 @@
       <div class="col-sm-10  col-md-6 offset-md-3 card">
         <div class="card-header">Modèle 3</div>
          <div class="card-body">Content</div>
-         <div class="card-footer"><a href="#">Choisir</a></div>
+         <div class="card-footer"><a href="index.php?page=11&modele=3">Choisir</a></div>
       </div>
     </div>
     <div class="carousel-item">
       <div class="col-sm-10 col-md-6 offset-md-3 card">
         <div class="card-header">Modèle 4</div>
          <div class="card-body">Content</div>
-         <div class="card-footer"><a href="#">Choisir</a></div>
+         <div class="card-footer"><a href="index.php?page=11&modele=4">Choisir</a></div>
       </div>
     </div>
   </div>
@@ -56,5 +56,5 @@
 	    <span class="sr-only">Next</span>
 	  </a>
   </div>
-  <a href="#">Passer</a>
+  <a href="index.php?page=11&modele=0">Passer</a>
 </div>

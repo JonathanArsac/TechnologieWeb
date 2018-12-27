@@ -31,9 +31,13 @@ case 3:
 
 
 	case 10:
-		// inclure ici la page parcourirOffre
+		// inclure ici la page choisirModeleCV
 		include("pages/choisirModeleCV.inc.php");
 	  break;
+		case 11:
+			// inclure ici la page creerCV
+			include("pages/creerCV.inc.php");
+		  break;
 default : 	include_once('pages/seConnecter.inc.php');
 }
 

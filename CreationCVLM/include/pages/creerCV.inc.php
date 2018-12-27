@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="container-fluid col-sm-12 col-md-4" >
-<h1> {{modele}}</h1>
+
       <div class="custom-control custom-checkbox ">
         <input type="checkbox" class="custom-control-input " id="checkboxEnTete" checked="checked" disabled>
         <label class="custom-control-label" for="checkboxEnTete">En-Tête</label>
