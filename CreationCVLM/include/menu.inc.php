@@ -23,7 +23,7 @@ if (isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
 
 					?>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Vos CV</a>
+					<a class="nav-link" href="index.php?page=10">Vos CV</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Vos lettres de motivations</a>

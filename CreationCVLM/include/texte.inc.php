@@ -25,21 +25,15 @@ case 2:
   break;
 
 case 3:
-	// inclure ici la page modification des personnes
+	// inclure ici la page parcourirOffre
 	include("pages/parcourirOffre.inc.php");
   break;
 
-case 4:
-	// inclure ici la page suppression personnes
-	include_once('pages/supprimerPersonne.inc.php');
-  break;
 
-	case 5:
-		// inclure ici la page
-		include("pages/ajouterPersonne.inc.php");
-	    break;
-
-
+	case 10:
+		// inclure ici la page parcourirOffre
+		include("pages/choisirModeleCV.inc.php");
+	  break;
 default : 	include_once('pages/seConnecter.inc.php');
 }
 
