@@ -2,6 +2,7 @@
 <?php
 $pdo = new Mypdo();
 $offreManager = new OffreManager ($pdo);
+$personneManager = new PersonneManager($pdo);
 
 $dernieresOffres = $offreManager->getLesDernieresOffres(); //tableau de citation valides
 ?>
@@ -28,15 +29,16 @@ $dernieresOffres = $offreManager->getLesDernieresOffres(); //tableau de citation
 			<?php
 				$i = 0;
 				foreach ($dernieresOffres as $derniereOffre){
+          $recruteur = $personneManager->getPersonneParNumeroPersonne($derniereOffre->getNumeroRecruteur());
 
 					echo "<div class=\"carousel-item"; if($i==0){echo " active";} echo "\">";
-							echo "<div class=\"texteCarousel col-sm-6 offset-4\" >";
+							echo "<div class=\"texteCarousel col-sm-6 col-md-6 offset-md-3\" >";
 								echo "<h4 style=\"padding-top:10%;\">".$derniereOffre->getIntituleOffre()."</h4>";
-								echo "<p>".$derniereOffre->getNumeroRecruteur()."</p>";
+								echo "<p>".$recruteur[0]->getNomPersonne()." ".$recruteur[0]->getPrenomPersonne()."</p>";
 								echo "<p>".$derniereOffre->getLieuOffre()."</p>";
 								echo "<p>".$derniereOffre->getFourchetteSalarialeOffre()."</p>";
-								echo "<p>".$derniereOffre->getDescriptionOffre()."</p>";
-								echo "<a href=\"visualiserOffre.inc.php?numeroOffre=".$derniereOffre->getNumeroOffre()."\"> Voir l'offre </a>";
+								echo "<p>".substr($derniereOffre->getDescriptionOffre(),0,100)."...</p>";
+								echo "<a class=\"boutonCarouselAccueil\" href=\"visualiserOffre.inc.php?numeroOffre=".$derniereOffre->getNumeroOffre()."\"> Voir l'offre </a>";
 							echo	"</div>";
 					echo	"</div>";
 

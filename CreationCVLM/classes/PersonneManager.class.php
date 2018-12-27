@@ -53,5 +53,19 @@ class PersonneManager{
 		return $listePersonnes;
 	}
 
+	public function getPersonneParNumeroPersonne($numeroPersonne) {
+			$listePersonnes = array(); // marche même sans  (tableau d'objets)
+			$sql = 'SELECT numeroPersonne,nomPersonne,prenomPersonne FROM personne where numeroPersonne='.$numeroPersonne;
+
+			$requete=$this->db->prepare($sql);
+			$requete->execute();
+			while ($personne=$requete->fetch(PDO::FETCH_OBJ)){
+				$listePersonnes[]= new Personne($personne);
+			}
+			$requete->closeCursor();
+
+		return $listePersonnes;
+	}
+
 }
 ?>

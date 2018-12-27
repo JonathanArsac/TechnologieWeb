@@ -16,11 +16,35 @@ h1,h2,h3,h4,h5{
  color:#ff5950;
 }
 
+.navbar{
+  background-color:#666666;
+  color:white;
+}
+
 /*
 
  CONNEXION
 */
 
+
+#lienDeconnexion{
+  color:white;
+  background-color:#ff5950;
+  border-radius:15px;
+  text-align:center;
+
+    padding-top:2%;
+        padding-bottom: 2%;
+  display: block;
+    margin-left: auto;
+    margin-right:auto;
+  margin-top:5%;
+}
+#lienDeconnexion:hover{
+  text-decoration: none;
+  color:white;
+  background-color:#ff6550;
+}
 #containerCreationCompte,#containerConnexion {
   border: 1px solid #E5E6E8;
   box-shadow:0 0 8px #ccc;
@@ -97,6 +121,25 @@ ACCUEIL
 */
 
 div#myCarousel{
-  height:300px;
+  height:400px;
 
+}
+
+.boutonCarouselAccueil{
+  color:white;
+  background-color:#ff5950;
+  border-radius:15px;
+  text-align:center;
+
+    padding-top:2%;
+        padding-bottom: 2%;
+  display: block;
+    margin-left: auto;
+    margin-right:auto;
+  margin-top:5%;
+}
+.boutonCarouselAccueil:hover{
+  text-decoration: none;
+  color:white;
+  background-color:#ff6550;
 }
