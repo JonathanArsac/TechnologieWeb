@@ -82,5 +82,19 @@ class OffreManager{
 
 		return $listeOffres;
 	}
+
+	public function getAllOffres() {
+			$listeOffres = array(); // marche même sans  (tableau d'objets)
+			$sql = 'SELECT numeroOffre,numeroRecruteur,intituleOffre,domaineOffre,descriptionOffre,missionOffre,profilRechercheOffre,typeContratOffre,typeOccupationOffre,dureeSemaineOffre,contrainteOffre,fourchetteSalarialeOffre,lieuOffre,dateDebutOffre,dateFinOffre FROM offre';
+
+			$requete=$this->db->prepare($sql);
+			$requete->execute();
+			while ($offre=$requete->fetch(PDO::FETCH_OBJ)){
+				$listeOffres[]= new Offre($offre);
+			}
+			$requete->closeCursor();
+
+		return $listeOffres;
+	}
 }
 ?>

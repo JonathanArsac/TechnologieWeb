@@ -33,6 +33,10 @@ case 4:
 	include("pages/creerOffre.inc.php");
 	break;
 
+case 5:
+	include("pages/parcourirAllOffres.inc.php");
+	break;
+
 	case 10:
 		// inclure ici la page choisirModeleCV
 		include("pages/choisirModeleCV.inc.php");
