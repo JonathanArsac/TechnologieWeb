@@ -34,10 +34,13 @@ if (isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
 				<?php
 			}
 			?>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Les annonces</a>
+				</li>
 				</ul>
 <ul class="nav navbar-nav navbar-right">
 			<li class="nav-item">
-				   <?php echo "<span class=\"hidden-xs hidden-sm\"> Utilisateur : ".$_SESSION['identifiantPersonne']." </span>  <a id=\"lienDeconnexion\" href=\"index.php?page=14\">  Déconnexion </a>";?>
+				   <?php echo "<span class=\"hidden-xs hidden-sm\"> Utilisateur : ".$_SESSION['identifiantPersonne']." </span>  <a id=\"lienDeconnexion\" href=\"index.php?page=1\">  Déconnexion </a>";?>
 			</li>
 				</ul>
 		</div>

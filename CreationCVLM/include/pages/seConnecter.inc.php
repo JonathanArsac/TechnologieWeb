@@ -53,7 +53,7 @@ if(isset($_SESSION['connexion']) && $_SESSION['connexion']==true ){
  </div>
 
 <?php
-   header("refresh:2;url=index.php?page=1");
+   header("refresh:2;url=index.php?page=2");
  }
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 24 déc. 2018 à 14:07
+-- Généré le :  jeu. 27 déc. 2018 à 13:50
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.0.23
 
@@ -46,14 +46,17 @@ CREATE TABLE IF NOT EXISTS `offre` (
   `dateDebutOffre` date NOT NULL,
   `dateFinOffre` date NOT NULL,
   PRIMARY KEY (`numeroOffre`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `offre`
 --
 
 INSERT INTO `offre` (`numeroOffre`, `numeroRecruteur`, `intituleOffre`, `domaineOffre`, `descriptionOffre`, `missionOffre`, `profilRechercheOffre`, `typeContratOffre`, `typeOccupationOffre`, `dureeSemaineOffre`, `lieuOffre`, `fourchetteSalarialeOffre`, `contrainteOffre`, `dateDebutOffre`, `dateFinOffre`) VALUES
-(1, 1, 'dz', 'dzd', 'zd', 'zd', 'dz', 'dz', 'dz', '2.5', 'fe', 'z', 'fe', '2018-12-26', '2018-12-04');
+(1, 1, 'Equipier(ère)/ Employé(e) de restauration', 'dzd', 'Quand je suis arrivée la première fois chez McDonald’s, on m’avait prévenue que, dans la restauration, je devrai m’accrocher....', 'zd', 'dz', 'dz', 'dz', '2.5', 'France', '', 'fe', '2018-12-26', '2018-12-04'),
+(2, 15, 'Chauffeur Scolaire H/F Personnes Handicapées', 'njilbh', 'Il vous suffit d\'être titulaire du permis B depuis plus de 4 ans, et d\'être disponible le matin et le soir aux heures de ramassage scolaire....', 'vhukvgu', 'kvgukv', 'gukvguk', 'vgukv', 'gukv', 'Limoges (87)', '500 € - 600 € par mois', 'vgkv', '2018-12-12', '2018-12-27'),
+(3, 15, 'Caissier ELS - Etudiant (h/f) ', 'ukv', 'Maintenir un magasin propre et agréable pour les clients. Une activité professionnelle valorisante compatible avec vos horaires de cours....', 'kv', 'gukv', 'gukv', 'uv', 'ukvgk', 'Aixe-sur-Vienne (87)', '', 'kv', '2018-12-12', '2018-12-28'),
+(4, 1, 'Enquêteur Terrain CDI H/F', '', 'LA SOCIÉTÉ : Véritable Start Up, A+ENERGIES a été ouverte en 2010 par deux jeunes entrepreneurs.', '', '', 'Temps partiel', '', '', 'Limoges (87)', '850 €- 2500€ par mois', '', '2018-12-12', '2018-12-12');
 
 -- --------------------------------------------------------
 
@@ -71,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `personne` (
   `motDePassePersonne` varchar(50) NOT NULL,
   `demandeurPersonne` tinyint(1) NOT NULL,
   PRIMARY KEY (`numeroPersonne`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `personne`
@@ -79,11 +82,9 @@ CREATE TABLE IF NOT EXISTS `personne` (
 
 INSERT INTO `personne` (`numeroPersonne`, `nomPersonne`, `prenomPersonne`, `mailPersonne`, `identifiantPersonne`, `motDePassePersonne`, `demandeurPersonne`) VALUES
 (1, 'Arsac', 'Jonathan', 'jonathanarsac@orange.fr', 'root', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', 0),
-(9, 'fecczc', 'zd', 'zd@d', 'd', '3984471d905b03bf358ec8ba91b8c3ea', 1),
 (5, 'Droal', 'Youenn', 'youenn.droal@orange.fr', 'root2', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785', 1),
-(8, 'a\"r', 'ef', 'zef@f', 'fe', 'd13c0ab50e961f160741b28010266fcd', 1),
-(10, 'ef', 'zddz', 'd@d', 'd', '3984471d905b03bf358ec8ba91b8c3ea', 1),
-(11, 'grv', 'e', 'e@e', 'ee', '700d81fcc5edfc8c95457270e0636b8a', 1);
+(16, 'Pedro', 'Manuel', 'pedromanuel@orange.fr', 'root', '81be5269ea4c1ce4237c5ed1c3868bf2', 1),
+(15, 'Podrich', 'Xavier', 'podrichxavier@orange.fr', 'root', '81be5269ea4c1ce4237c5ed1c3868bf2', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
