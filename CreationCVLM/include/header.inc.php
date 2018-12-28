@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <?php
-		$title = "Bienvenue sur le site du bétisier de l'IUT.";?>
+		$title = "Projet web";?>
 		<title>
 		<?php echo $title; ?>
 		</title>
