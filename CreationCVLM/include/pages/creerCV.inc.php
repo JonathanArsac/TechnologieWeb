@@ -1,6 +1,6 @@
 
 
-<div class="container-fluid">
+<div class="container-fluid" onload="affichageModele()">
   <div class="row">
     <div class="container-fluid col-sm-12 col-md-4" >
 
@@ -94,7 +94,7 @@
 
 
       <form class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneFormation" >
-        <fieldset  class="zoneCV col-sm-12" id="fieldsetFormation">
+        <fieldset  class=" col-sm-12" id="fieldsetFormation">
           <legend class="col-sm-3">Formation </legend>
           <div class="row">
             <div class="form-group col-sm-12">
@@ -231,6 +231,60 @@
       	return vars;
       }
 
+      window.onload = function(){
+        switch(parseInt($_GET("modele"))){
+          case 0:
+            break;
+          case 1:
+            zoneObjectif.style.display = "block";
+            checkboxObjectif.checked=true;
+            zoneExperience.style.display = "block";
+            checkboxExperience.checked=true;
+            zoneFormation.style.display = "block";
+            checkboxFormation.checked=true;
+            zoneProjet.style.display = "block";
+            checkboxProjet.checked=true;
+            break;
+          case 2:
+
+          zoneProjet.style.display = "block";
+          checkboxProjet.checked=true;
+          zoneRealisation.style.display = "block";
+          checkboxRealisation.checked=true;
+          zonePublication.style.display = "block";
+          checkboxPublication.checked=true;
+          zoneReference.style.display = "block";
+          checkboxReference.checked=true;
+
+            break;
+          case 3:
+          zoneExperience.style.display = "block";
+          checkboxExperience.checked=true;
+          zoneLangue.style.display = "block";
+          checkboxLangue.checked=true;
+          zoneCertification.style.display = "block";
+          checkboxCertification.checked=true;
+
+            break;
+          case 4:
+          zoneObjectif.style.display = "block";
+          checkboxObjectif.checked=true;
+          zoneExperience.style.display = "block";
+          checkboxExperience.checked=true;
+          zoneFormation.style.display = "block";
+          checkboxFormation.checked=true;
+          zoneCompetence.style.display = "block";
+          checkboxCompetence.checked=true;
+          zoneLangue.style.display = "block";
+          checkboxLangue.checked=true;
+          zoneProjet.style.display = "block";
+          checkboxProjet.checked=true;
+
+            break;
+          default:
+        
+        }
+      }
 
       </script>
 

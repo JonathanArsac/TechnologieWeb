@@ -153,3 +153,6 @@ div#myCarousel{
 .zoneCV{
   display: none;
 }
+#zoneEnTete{
+  display: block;
+}

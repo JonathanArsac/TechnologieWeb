@@ -17,7 +17,7 @@
     <div class="carousel-item active">
       <div class="col-sm-10  col-md-6 offset-md-3 card">
         <div class="card-header">Modèle 1</div>
-         <div class="card-body">Défaut</div>
+         <div class="card-body">En-Tête Objectif du CV Expérience Formation Projets réalisés</div>
          <div class="card-footer"><a href="index.php?page=11&modele=1">Choisir</a></div>
       </div>
     </div>
@@ -25,7 +25,7 @@
     <div class="carousel-item">
       <div class="col-sm-10  col-md-6 offset-md-3 card">
         <div class="card-header">Modèle 2</div>
-         <div class="card-body">Content</div>
+         <div class="card-body">En-Tête Projets réalisés Réalisations Publications Références</div>
          <div class="card-footer"><a href="index.php?page=11&modele=2">Choisir</a></div>
       </div>
     </div>
@@ -33,14 +33,14 @@
     <div class="carousel-item">
       <div class="col-sm-10  col-md-6 offset-md-3 card">
         <div class="card-header">Modèle 3</div>
-         <div class="card-body">Content</div>
+         <div class="card-body">En-Tête Expérience Langues Certifications</div>
          <div class="card-footer"><a href="index.php?page=11&modele=3">Choisir</a></div>
       </div>
     </div>
     <div class="carousel-item">
       <div class="col-sm-10 col-md-6 offset-md-3 card">
         <div class="card-header">Modèle 4</div>
-         <div class="card-body">Content</div>
+         <div class="card-body">En-Tête Objectif du CV Expérience Formation Compétences Langues Projets réalisés</div>
          <div class="card-footer"><a href="index.php?page=11&modele=4">Choisir</a></div>
       </div>
     </div>
