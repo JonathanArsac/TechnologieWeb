@@ -92,6 +92,7 @@
         </fieldset>
       </form>
 
+
       <form class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneFormation" >
         <fieldset  class="zoneCV col-sm-12" id="fieldsetFormation">
           <legend class="col-sm-3">Formation </legend>
@@ -174,10 +175,6 @@
         </fieldset>
       </form>
 
-      <form class=" col-sm-12" action="/CreationCV/TelechargerCV" >
-        <input class="form-control" type="textarea" name="references" placeholder="Références" required>
-        <button type="submit">Télécharger</button>
-      </form>
 
       <script>
       function allowDrop(ev) {
@@ -192,21 +189,18 @@
 
           ev.preventDefault();
           var data = ev.dataTransfer.getData("form");
-
-
           console.log(ev.target.id);
-
-          if( ev.target.id=="containerCreationCV"){
-            ev.target.appendChild(document.getElementById(data));
-          }else if(ev.target.tagName=="FORM"){
-            ev.target.parentElement.appendChild(document.getElementById(data));
-          }else if(ev.target.tagName=="FIELDSET"){
-            ev.target.parentElement.parentElement.appendChild(document.getElementById(data));
-            console.log("coucou 2");
-          }else if(ev.target.tagName=="INPUT"){
-            ev.target.parentElement.parentElement.parentElement.parentElement.parentElement.appendChild(document.getElementById(data));
-              console.log("coucou 3");
+          if(ev.target.tagName=="FORM"){
+            ev.target.parentNode.insertBefore(document.getElementById(data),ev.target.nextSibling);
+          }else{
+            var parent = ev.target.parentElement;
+            while(parent.tagName!="FORM"){
+              parent = parent.parentElement;
+            }
+              parent.parentNode.insertBefore(document.getElementById(data),parent.nextSibling);
           }
+
+
       }
 
       function apparaitreZone(nom) {
