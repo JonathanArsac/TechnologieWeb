@@ -2,12 +2,40 @@
 <?php
 if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
 
+
+  $target_file =  basename($_FILES["photo"]["name"]);
+
+  $uploadOk = 1;
+  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+  // Allow certain file formats
+  if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+  && $imageFileType != "gif" ) {
+      echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+      $uploadOk = 0;
+  }
+  // Check if $uploadOk is set to 0 by an error
+  if ($uploadOk == 0) {
+      echo "Sorry, your file was not uploaded.";
+  // if everything is ok, try to upload file
+  } else {
+      if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
+          echo "The file ". basename( $_FILES["photo"]["name"]). " has been uploaded.";
+      } else {
+          echo "Sorry, there was an error uploading your file.";
+      }
+  }
+
   $pdf = new PDF();
   $pdf->AliasNbPages();
   $pdf->AddPage();
   $pdf->SetFont('Times','',12);
-  for($i=1;$i<=40;$i++)
-      $pdf->Cell(0,10,'Impression de la ligne nro '.$i,0,1);
+  if(!empty($_POST["nom"])){
+    $pdf->Cell(0,10,$_POST["nom"],0,1);
+    $pdf->Cell(0,10,$_POST["coordonnees"]);
+    $pdf->Image($target_file,10,6,30);
+  }
+
 
   if(isset($_POST["enregistrer"])){
     if(!is_dir($_SESSION["numeroPersonne"])){
@@ -21,15 +49,16 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
     $pdf->Output('F',$_SESSION["numeroPersonne"]."/".$_POST["nomPDF"].".pdf");
     header("Content-type:application/pdf");
 
-    // It will be called downloaded.pdf
+
     header("Content-Disposition:attachment;filename='".$_POST["nomPDF"]."'.pdf'");
     ob_clean();
     flush();
-    // The PDF source is in original.pdf
+
     readfile($_SESSION["numeroPersonne"]."/".$_POST["nomPDF"].".pdf");
     unlink($_SESSION["numeroPersonne"]."/".$_POST["nomPDF"].".pdf");
-  }
 
+  }
+  unlink($target_file);
 }
 
 ?>
@@ -86,7 +115,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
 
     </div>
     <div class="container-fluid col-sm-12 col-md-8 " id="containerCreationCV" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <form method="POST" action="#">
+      <form method="POST" action="#" enctype="multipart/form-data">
 
         <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneEnTete" >
           <legend class="col-sm-2">En-Tête </legend>
@@ -95,7 +124,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
           </div>
           <div class="row">
             <div class="form-group col-sm-9">
-              <input class="form-control" type="textarea" name="coordonnees" placeholder="Coordonnées" >
+               <textarea class="form-control" rows="5" name="coordonnees" >Coordonnées</textarea>
             </div>
             <div class="form-group col-sm-3 custom-file">
               <input class="form-control custom-file-input" type="file" name="photo" placeholder="Photo" >
