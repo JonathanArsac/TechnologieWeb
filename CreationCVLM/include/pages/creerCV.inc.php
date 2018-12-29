@@ -2,9 +2,7 @@
 <?php
 if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
 
-
   $target_file =  basename($_FILES["photo"]["name"]);
-
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -25,16 +23,16 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
           echo "Sorry, there was an error uploading your file.";
       }
   }
-
   $pdf = new PDF();
   $pdf->AliasNbPages();
   $pdf->AddPage();
   $pdf->SetFont('Times','',12);
-  if(!empty($_POST["nom"])){
-    $pdf->Cell(0,10,$_POST["nom"],0,1);
-    $pdf->Cell(0,10,$_POST["coordonnees"]);
-    $pdf->Image($target_file,10,6,30);
-  }
+
+          $pdf->MultiCell(80,10,utf8_decode($_POST["nom"]),0,1);
+          $pdf->Image($target_file,150,10,30,50);
+          $pdf->MultiCell(100,10,utf8_decode($_POST["coordonnees"]),0,1);
+
+          $pdf->MultiCell(80,10,utf8_decode($_POST["objectifs"]),0,1);
 
 
   if(isset($_POST["enregistrer"])){
@@ -50,7 +48,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
     header("Content-type:application/pdf");
 
 
-    header("Content-Disposition:attachment;filename='".$_POST["nomPDF"]."'.pdf'");
+    header("Content-Disposition:attachment;filename='".$_POST["nomPDF"].".pdf'");
     ob_clean();
     flush();
 
@@ -115,117 +113,118 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
 
     </div>
     <div class="container-fluid col-sm-12 col-md-8 " id="containerCreationCV" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <form method="POST" action="#" enctype="multipart/form-data">
-
-        <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneEnTete" >
-          <legend class="col-sm-2">En-Tête </legend>
-          <div class="form-group" class="col-sm-8">
-            <input class="form-control" type="text" name="nom" placeholder="Titre" >
-          </div>
-          <div class="row">
-            <div class="form-group col-sm-9">
-               <textarea class="form-control" rows="5" name="coordonnees" >Coordonnées</textarea>
+      <form method="POST" action="#" enctype="multipart/form-data" accept-charset="UTF-8">
+        <div>
+          <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneEnTete" >
+            <legend class="col-sm-2">En-Tête </legend>
+            <div class="form-group" class="col-sm-8">
+              <input class="form-control" type="text" name="nom" placeholder="Titre" >
             </div>
-            <div class="form-group col-sm-3 custom-file">
-              <input class="form-control custom-file-input" type="file" name="photo" placeholder="Photo" >
-               <label class="custom-file-label" for="customFile">Choose file</label>
+            <div class="row">
+              <div class="form-group col-sm-9">
+                 <textarea class="form-control" rows="5" name="coordonnees" >Coordonnées</textarea>
+              </div>
+              <div class="form-group col-sm-3 custom-file">
+                <input class="form-control custom-file-input" type="file" name="photo" placeholder="Photo" >
+                 <label class="custom-file-label" for="customFile">Choose file</label>
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneObjectif" >
-          <legend class="col-sm-2">Objectif  </legend>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <input class="form-control" type="textarea" name="objectifs" placeholder="Objectifs" >
+          <fieldset class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneObjectif" >
+            <legend class="col-sm-2">Objectif  </legend>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                 <textarea class="form-control" rows="5" name="objectifs" ></textarea>
+
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneExperience" >
-          <legend class="col-sm-3">Expériences  </legend>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <input class="form-control" type="textarea" name="experiences" placeholder="Expériences" >
+          <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneExperience" >
+            <legend class="col-sm-3">Expériences  </legend>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <input class="form-control" type="textarea" name="experiences" placeholder="Expériences" >
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneFormation" ></fieldsetclass>
-          <legend class="col-sm-3">Formation </legend>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <input class="form-control" type="textarea" name="formations" placeholder="Formation" >
+          <fieldset class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneFormation" ></fieldsetclass>
+            <legend class="col-sm-3">Formation </legend>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <input class="form-control" type="textarea" name="formations" placeholder="Formation" >
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneCompetence" >
-          <legend class="col-sm-3">Compétences  </legend>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <input class="form-control" type="textarea" name="competences" placeholder="Compétences" >
+          <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneCompetence" >
+            <legend class="col-sm-3">Compétences  </legend>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <input class="form-control" type="textarea" name="competences" placeholder="Compétences" >
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneLangue">
-          <legend class="col-sm-3">Langues  </legend>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <input class="form-control" type="textarea" name="langues" placeholder="Langues" >
+          <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneLangue">
+            <legend class="col-sm-3">Langues  </legend>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <input class="form-control" type="textarea" name="langues" placeholder="Langues" >
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneProjet">
-          <legend class="col-sm-3">Projets réalisés  </legend>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <input class="form-control" type="textarea" name="projets" placeholder="Projets" >
+          <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneProjet">
+            <legend class="col-sm-3">Projets réalisés  </legend>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <input class="form-control" type="textarea" name="projets" placeholder="Projets" >
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneRealisation">
-          <legend class="col-sm-3">Réalisations </legend>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <input class="form-control" type="textarea" name="realisations" placeholder="Réalisations" >
+          <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneRealisation">
+            <legend class="col-sm-3">Réalisations </legend>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <input class="form-control" type="textarea" name="realisations" placeholder="Réalisations" >
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneCertification">
-          <legend class="col-sm-3">Certifications </legend>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <input class="form-control" type="textarea" name="certifications" placeholder="Certifications" >
+          <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneCertification">
+            <legend class="col-sm-3">Certifications </legend>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <input class="form-control" type="textarea" name="certifications" placeholder="Certifications" >
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zonePublication">
-          <legend class="col-sm-3">Publications  </legend>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <input class="form-control" type="textarea" name="publications" placeholder="Publications" >
+          <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zonePublication">
+            <legend class="col-sm-3">Publications  </legend>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <input class="form-control" type="textarea" name="publications" placeholder="Publications" >
+              </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneReference">
-          <legend class="col-sm-3">Références  </legend>
-          <div class="row">
-            <div class="form-group col-sm-12">
-              <input class="form-control" type="textarea" name="references" placeholder="Références" >
+          <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneReference">
+            <legend class="col-sm-3">Références  </legend>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <input class="form-control" type="textarea" name="references" placeholder="Références" >
+              </div>
             </div>
-          </div>
-        </fieldset>
-
+          </fieldset>
+        </div>
         <input class="form-control" type="text" name="nomPDF" placeholder="Nom du PDF ">
         <input type="submit" name="enregistrer" value="Enregistrer dans mon espace personnel ">
-            <input type="submit" name="telecharger" value="Telecharger ">
+        <input class="btn" type="submit" name="telecharger" value="Télécharger" id="boutonTelechargerCV">
 
       </form>
     </div>

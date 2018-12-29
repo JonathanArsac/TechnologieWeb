@@ -13,9 +13,9 @@ function Header()
     // Décalage à droite
     $this->Cell(80);
     // Titre
-    $this->Cell(30,10,'Titre',1,0,'C');
+    $this->Cell(30,10,utf8_decode('CVéééééé'),1,0,'C');
     // Saut de ligne
-    $this->Ln(20);
+    $this->Ln(10);
 }
 
 // Pied de page

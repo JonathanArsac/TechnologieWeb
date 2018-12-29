@@ -162,6 +162,17 @@ CV
   box-shadow:0 0 8px #ccc;
   border-radius:6px;
   background: white;
-  
 
+
+}
+
+
+#boutonTelechargerCV{
+  color:white;
+  background-color:#ff5950;
+  border-radius:15px;
+  text-align:center;
+
+    padding-top:2%;
+        padding-bottom: 2%;
 }
