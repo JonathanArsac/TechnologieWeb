@@ -2,7 +2,12 @@
 
 
 
-<div class="container">
+
+<div class="row">
+
+
+<div class="col-sm-12 col-lg-5">
+
 
   <div id="carouselModele" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -15,33 +20,33 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <div class="col-sm-10  col-md-6 offset-md-3 card">
+      <div class="col-sm-10  col-lg-6 offset-lg-3 card">
         <div class="card-header">Modèle 1</div>
-         <div class="card-body">En-Tête Objectif du CV Expérience Formation Projets réalisés</div>
-         <div class="card-footer"><a href="index.php?page=11&modele=1">Choisir</a></div>
+         <div class="card-body">En-Tête <br /> Objectif du CV  <br /> Expérience  <br /> Formation <br />  Projets réalisés</div>
+         <div class="card-footer"><a class="col-sm-5 offset-sm-4" href="index.php?page=11&modele=1">Choisir</a></div>
       </div>
     </div>
 
     <div class="carousel-item">
-      <div class="col-sm-10  col-md-6 offset-md-3 card">
+      <div class="col-sm-10  col-lg-6 offset-lg-3 card">
         <div class="card-header">Modèle 2</div>
-         <div class="card-body">En-Tête Projets réalisés Réalisations Publications Références</div>
-         <div class="card-footer"><a href="index.php?page=11&modele=2">Choisir</a></div>
+         <div class="card-body">En-Tête <br />  Projets réalisés  <br /> Réalisations <br />  Publications <br />  Références</div>
+         <div class="card-footer"><a class="col-sm-5 offset-sm-4" href="index.php?page=11&modele=2">Choisir</a></div>
       </div>
     </div>
 
     <div class="carousel-item">
-      <div class="col-sm-10  col-md-6 offset-md-3 card">
+      <div class="col-sm-10  col-lg-6 offset-lg-3 card">
         <div class="card-header">Modèle 3</div>
-         <div class="card-body">En-Tête Expérience Langues Certifications</div>
-         <div class="card-footer"><a href="index.php?page=11&modele=3">Choisir</a></div>
+         <div class="card-body">En-Tête <br />  Expérience  <br /> Langues  <br /> Certifications</div>
+         <div class="card-footer"><a class="col-sm-5 offset-sm-4" href="index.php?page=11&modele=3">Choisir</a></div>
       </div>
     </div>
     <div class="carousel-item">
-      <div class="col-sm-10 col-md-6 offset-md-3 card">
+      <div class="col-sm-10 col-lg-6 offset-lg-3 card">
         <div class="card-header">Modèle 4</div>
-         <div class="card-body">En-Tête Objectif du CV Expérience Formation Compétences Langues Projets réalisés</div>
-         <div class="card-footer"><a href="index.php?page=11&modele=4">Choisir</a></div>
+         <div class="card-body">En-Tête  <br /> Objectif du CV <br />  Expérience  <br /> Formation <br />  Compétences  <br /> Langues  <br /> Projets réalisés</div>
+         <div class="card-footer"><a class="col-sm-5 offset-sm-4" href="index.php?page=11&modele=4">Choisir</a></div>
       </div>
     </div>
   </div>
@@ -56,5 +61,21 @@
 	    <span class="sr-only">Next</span>
 	  </a>
   </div>
-  <a href="index.php?page=11&modele=0">Passer</a>
+  <a class="col-sm-5 offset-sm-5" href="index.php?page=11&modele=0" id="boutonPasserModele">Passer</a>
+</div>
+<div class="col-sm-12 col-lg-5 offset-lg-1">
+<p>
+  TES CV
+</p>
+<?php
+$d = dir($_SESSION["numeroPersonne"]);
+while($entry = $d->read()) {
+  if($entry!="."  )
+    echo "<a href=\"".$_SESSION["numeroPersonne"]."/".$entry."\">".$entry."</a><br>\n";
+}
+$d->close();
+?>
+
+</div>
+
 </div>

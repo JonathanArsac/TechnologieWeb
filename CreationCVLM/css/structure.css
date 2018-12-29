@@ -167,12 +167,24 @@ CV
 }
 
 
-#boutonTelechargerCV{
+#boutonTelechargerCV,#boutonEnregistrerCV,#boutonPasserModele{
   color:white;
   background-color:#ff5950;
   border-radius:15px;
   text-align:center;
+  margin-top: 2%;
 
-    padding-top:2%;
-        padding-bottom: 2%;
+
+}
+
+#carouselModele{
+  height:400px;
+}
+.card-footer a{
+  color:white;
+  background-color:#ff5950;
+  border-radius:15px;
+  text-align:center;
+  margin-top: 2%;
+  padding:2%;
 }

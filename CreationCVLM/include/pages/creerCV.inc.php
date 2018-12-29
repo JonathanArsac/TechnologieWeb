@@ -2,37 +2,84 @@
 <?php
 if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
 
-  $target_file =  basename($_FILES["photo"]["name"]);
-  $uploadOk = 1;
-  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-  // Allow certain file formats
-  if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-  && $imageFileType != "gif" ) {
-      echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-      $uploadOk = 0;
-  }
-  // Check if $uploadOk is set to 0 by an error
-  if ($uploadOk == 0) {
-      echo "Sorry, your file was not uploaded.";
-  // if everything is ok, try to upload file
-  } else {
-      if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-          echo "The file ". basename( $_FILES["photo"]["name"]). " has been uploaded.";
-      } else {
-          echo "Sorry, there was an error uploading your file.";
-      }
-  }
   $pdf = new PDF();
   $pdf->AliasNbPages();
   $pdf->AddPage();
   $pdf->SetFont('Times','',12);
 
-          $pdf->MultiCell(80,10,utf8_decode($_POST["nom"]),0,1);
-          $pdf->Image($target_file,150,10,30,50);
-          $pdf->MultiCell(100,10,utf8_decode($_POST["coordonnees"]),0,1);
+  $ordres = explode("~",$_POST["ordreFormulaire"]);
 
-          $pdf->MultiCell(80,10,utf8_decode($_POST["objectifs"]),0,1);
+  foreach($ordres as $ordre){
+
+    if($ordre=="zoneEnTete"){
+
+      $pdf->MultiCell(80,10,utf8_decode($_POST["nom"]),0,1);
+      if(!empty($_POST["photo"])){
+        $target_file =  basename($_FILES["photo"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
+                echo "The file ". basename( $_FILES["photo"]["name"]). " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+        $pdf->Image($target_file,150,10,30,50);
+      }
+
+      $pdf->MultiCell(100,10,utf8_decode($_POST["coordonnees"]),0,1);
+    }
+    if($ordre=="zoneObjectif"){
+        $pdf->MultiCell(80,10,utf8_decode($_POST["objectifs"]),0,1);
+    }
+    if($ordre=="zoneExperience"){
+        $pdf->MultiCell(80,10,utf8_decode($_POST["experiences"]),0,1);
+    }
+    if($ordre=="zoneFormation"){
+        $pdf->MultiCell(80,10,utf8_decode($_POST["formations"]),0,1);
+    }
+    if($ordre=="zoneCompetence"){
+        $pdf->MultiCell(80,10,utf8_decode($_POST["competences"]),0,1);
+    }
+    if($ordre=="zoneLangue"){
+        $pdf->MultiCell(80,10,utf8_decode($_POST["langues"]),0,1);
+    }
+    if($ordre=="zoneProjet"){
+        $pdf->MultiCell(80,10,utf8_decode($_POST["projets"]),0,1);
+    }
+    if($ordre=="zoneRealisation"){
+        $pdf->MultiCell(80,10,utf8_decode($_POST["realisations"]),0,1);
+    }
+
+    if($ordre=="zoneCertification"){
+        $pdf->MultiCell(80,10,utf8_decode($_POST["certifications"]),0,1);
+    }
+
+    if($ordre=="zonePublication"){
+        $pdf->MultiCell(80,10,utf8_decode($_POST["publications"]),0,1);
+    }
+    if($ordre=="zoneReference"){
+        $pdf->MultiCell(80,10,utf8_decode($_POST["references"]),0,1);
+    }
+
+
+
+  }
+
+
 
 
   if(isset($_POST["enregistrer"])){
@@ -223,9 +270,9 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
           </fieldset>
         </div>
         <input class="form-control" type="text" name="nomPDF" placeholder="Nom du PDF ">
-        <input type="submit" name="enregistrer" value="Enregistrer dans mon espace personnel ">
-        <input class="btn" type="submit" name="telecharger" value="Télécharger" id="boutonTelechargerCV">
-
+        <input type="submit" name="enregistrer" value="Enregistrer dans mon espace personnel " id="boutonEnregistrerCV">
+        <input type="submit" name="telecharger" value="Télécharger" id="boutonTelechargerCV">
+        <input type="hidden" name="ordreFormulaire" value="zoneEnTete~" id="ordreFormulaire"/>
       </form>
     </div>
   </div>
@@ -262,9 +309,20 @@ function drop(ev) {
         parent.parentNode.insertBefore(document.getElementById(data),parent.nextSibling);
     }
 
+    ordreFormulaire();
 
 }
-
+function ordreFormulaire(){
+  var categorie = document.getElementsByTagName("fieldset");
+  var ordreFormulaire = document.getElementById("ordreFormulaire");
+  ordreFormulaire.value="";
+  for (var i=0;i<categorie.length;i++){
+    if(getComputedStyle(categorie[i], null).display!="none"){
+          ordreFormulaire.value =ordreFormulaire.value + categorie[i].id + "~";
+    }
+  }
+  ordreFormulaire.value= ordreFormulaire.value.substring(0,ordreFormulaire.value.length-1);
+}
 function apparaitreZone(nom) {
     var idcheckBox = nom;
     var nomZoneCV= "zone"+idcheckBox.substring(8, 50);
@@ -276,6 +334,7 @@ function apparaitreZone(nom) {
     } else {
        zoneCV.style.display = "none";
     }
+    ordreFormulaire();
 }
 
 function $_GET(param) {
