@@ -154,11 +154,11 @@ CV
   display: none;
   margin-bottom: 2%;
 }
-#zoneEnTete{
+#zoneEnTete,#zoneEnTete2{
   display: block;
 }
 
-#containerCheckBoxCV,#containerBoutonsCreationCV{
+.containerCheckBox,.containerBoutonsCreation{
   border: 1px solid #E5E6E8;
   box-shadow:0 0 8px #ccc;
   border-radius:6px;
@@ -168,7 +168,7 @@ CV
 }
 
 
-#boutonTelechargerCV,#boutonEnregistrerCV,#boutonPasserModele{
+.boutonTelecharger,.boutonEnregistrer,.boutonPasserModele{
   color:white;
   background-color:#ff5950;
   border-radius:15px;
@@ -190,18 +190,31 @@ CV
   padding:2%;
 }
 
-#containerBoutonsCreationCV{
+.containerBoutonsCreation{
   margin-top: 2%;
   padding:2%;
 }
 
-#containerCheckBoxCV{
+.containerCheckBox{
   padding-left:3%;
     padding-bottom:1.5%;
 
 }
-#containerCheckBoxCV h5{
+.containerCheckBox h5{
   padding-bottom:1%;
     padding-top:1.5%;
+
+}
+
+.containerDocEnregistre{
+  margin-top: 3%;
+}
+
+.containerDocEnregistre input{
+  color:white;
+  background-color:#ff5950;
+  border-radius:15px;
+  text-align:center;
+  margin-top: 2%;
 
 }

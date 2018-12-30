@@ -49,6 +49,14 @@ case 6:
 			// inclure ici la page creerCV
 			include("pages/creerCV.inc.php");
 		  break;
+			case 12:
+				// inclure ici la page choisirModeleLM
+				include("pages/choisirModeleLM.inc.php");
+			  break;
+				case 13:
+					// inclure ici la page creerLM
+					include("pages/creerLM.inc.php");
+				  break;
 default : 	include_once('pages/seConnecter.inc.php');
 }
 
