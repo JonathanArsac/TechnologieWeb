@@ -205,3 +205,16 @@ CV
     padding-top:1.5%;
 
 }
+
+#containerCVEnregistre{
+  margin-top: 3%;
+}
+
+#containerCVEnregistre input{
+  color:white;
+  background-color:#ff5950;
+  border-radius:15px;
+  text-align:center;
+  margin-top: 2%;
+
+}
