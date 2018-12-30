@@ -1,17 +1,23 @@
-
-
 function rechercher() {
   var recherche = document.getElementById('recherche');
   var domaine = document.getElementsByClassName('sdomaine');
   var lieu = document.getElementsByClassName('slieu');
   var ligne = document.getElementsByClassName('ligneTab')
-  var test = 0;
+  var selector = document.getElementById('selector');
+  var value = selector[selector.selectedIndex].value;
   for(var i=0; i<domaine.length;i++){
-    if(domaine[i].textContent.includes(recherche.value)){
-      ligne[i].style.display = 'table-row';
+    if(value=="Domaine"){
+      if(domaine[i].textContent.includes(recherche.value)){
+        ligne[i].style.display = 'table-row';
+      }else{
+        ligne[i].style.display = 'none';
+      }
     }else{
-      ligne[i].style.display = 'none';
-
+      if(lieu[i].textContent.includes(recherche.value)){
+        ligne[i].style.display = 'table-row';
+      }else{
+        ligne[i].style.display = 'none';
+      }
     }
   }
 }
