@@ -2,6 +2,8 @@
 $pdo = new Mypdo();
 $candidatManager = new CandidatManager($pdo);
 $offreManager = new OffreManager($pdo);
+$personneManager = new PersonneManager($pdo);
+
 
 $candidats = $candidatManager->getCandidatForOneRecruteur($_SESSION['numeroPersonne']);
 ?>
@@ -10,14 +12,17 @@ $candidats = $candidatManager->getCandidatForOneRecruteur($_SESSION['numeroPerso
 
 <table class="table">
 
-  <tr><th>Numero personne</th><th>Numero Offre</th><th>Etat Demande</th></tr>
+  <tr><th>Nom personne</th><th>Intitulé Offre</th><th>Etat Demande</th></tr>
   <?php
   foreach ($candidats as $candidat){
     if($offreManager->verifDate($candidat->getNumeroOffre())){
-      if ($candidat->getEtatDemande()!=0){?>
+      if ($candidat->getEtatDemande()!=0){
+        $intituleOffre = $offreManager->getIntituleByNumero($candidat->getNumeroOffre());
+        $nomPersonne = $personneManager->getNomByNum($candidat->getNumeroPersonne());
+        ?>
         <tr>
-          <td><?php echo $candidat->getNumeroPersonne();?>
-          </td><td><?php echo $candidat->getNumeroOffre();?>
+          <td><?php echo $nomPersonne;?>
+          </td><td><?php echo $intituleOffre;?>
           </td><td><?php if($candidat->getEtatDemande()==2){
             echo "En Attente";
           }elseif($candidat->getEtatDemande()==1){

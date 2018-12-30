@@ -45,6 +45,19 @@ class OffreManager{
             $requete -> bindValue(':dateFinOffre',$offre->getDateFinOffre());
 						return $requete->execute();
 		}
+		public function verifDate($numO){
+			$sql = 'SELECT numeroOffre,numeroRecruteur,intituleOffre,domaineOffre,descriptionOffre,missionOffre,profilRechercheOffre,typeContratOffre,typeOccupationOffre,dureeSemaineOffre,contrainteOffre,fourchetteSalarialeOffre,lieuOffre,dateDebutOffre,dateFinOffre FROM offre WHERE numeroOffre='.$numO;
+			$requete=$this->db->prepare($sql);
+			$requete->execute();
+			while ($offre=$requete->fetch(PDO::FETCH_OBJ)){
+				$listeOffres[]= new Offre($offre);
+			}
+			$requete->closeCursor();
+			if(date("Y-m-d")>$listeOffres[0]->getDateDebutOffre() && date("Y-m-d")<$listeOffres[0]->getDateFinOffre()){
+				return true;
+			}
+			return false;
+		}
 
 	public function supprimer($numeroOffre){
 		$sql = 'DELETE FROM offre where numeroOffre='.$numeroOffre;
@@ -64,8 +77,12 @@ class OffreManager{
 				$listeOffres[]= new Offre($offre);
 			}
 			$requete->closeCursor();
-
-		return $listeOffres;
+			for($i=0; $i<5;$i++){
+				if($this->verifDate($listeOffres[$i]->getNumeroOffre())){
+					$listeOffresGoodDate[$i]=$listeOffres[$i];
+				}
+			}
+		return $listeOffresGoodDate;
 	}
 
 
@@ -97,18 +114,14 @@ class OffreManager{
 		return $listeOffres;
 	}
 
-	public function verifDate($numO){
+	public function getIntituleByNumero($numO){
 		$sql = 'SELECT numeroOffre,numeroRecruteur,intituleOffre,domaineOffre,descriptionOffre,missionOffre,profilRechercheOffre,typeContratOffre,typeOccupationOffre,dureeSemaineOffre,contrainteOffre,fourchetteSalarialeOffre,lieuOffre,dateDebutOffre,dateFinOffre FROM offre WHERE numeroOffre='.$numO;
 		$requete=$this->db->prepare($sql);
 		$requete->execute();
 		while ($offre=$requete->fetch(PDO::FETCH_OBJ)){
 			$listeOffres[]= new Offre($offre);
 		}
-		$requete->closeCursor();
-		if(date("Y-m-d")>$listeOffres[0]->getDateDebutOffre() && date("Y-m-d")<$listeOffres[0]->getDateFinOffre()){
-			return true;
-		}
-		return false;
+		return $listeOffres[0]->getIntituleOffre();
 	}
 }
 ?>

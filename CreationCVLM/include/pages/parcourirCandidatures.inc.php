@@ -9,13 +9,16 @@ $candidats = $candidatManager->getCandidatForOnePersonne($_SESSION['numeroPerson
 
 <table class="table">
 
-  <tr><th>Numero Offre</th><th>Etat Demande</th></tr>
+  <tr><th>Intitulé Offre</th><th>Etat Demande</th></tr>
   <?php
   foreach ($candidats as $candidat){
     if($offreManager->verifDate($candidat->getNumeroOffre())){
+
+
+      $intituleOffre = $offreManager->getIntituleByNumero($candidat->getNumeroOffre());
      ?>
     <tr>
-      </td><td><?php echo $candidat->getNumeroOffre();?>
+    </td><td><?php echo $intituleOffre;?>
       </td><td><?php if($candidat->getEtatDemande()==2){
         echo "En Attente";
       }elseif($candidat->getEtatDemande()==1){

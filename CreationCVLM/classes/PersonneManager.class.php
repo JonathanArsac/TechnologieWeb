@@ -67,5 +67,19 @@ class PersonneManager{
 		return $listePersonnes;
 	}
 
+	public function getNomByNum($numP){
+		$sql = 'SELECT numeroPersonne,nomPersonne,prenomPersonne FROM personne where numeroPersonne='.$numP;
+		$requete=$this->db->prepare($sql);
+		$requete->execute();
+		while ($personne=$requete->fetch(PDO::FETCH_OBJ)){
+			$listePersonnes[]= new Personne($personne);
+		}
+		$requete->closeCursor();
+
+		return $listePersonnes[0]->getNomPersonne();
+
+
+	}
+
 }
 ?>
