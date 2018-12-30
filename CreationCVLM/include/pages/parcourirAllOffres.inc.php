@@ -5,7 +5,7 @@ $personneManager = new PersonneManager($pdo);
 $offres = $offreManager->getAllOffres();
 ?>
 
-<h2>Liste Offre</h2>
+<h4>Toutes les annonces</h4>
 
 <input id="champRecherche" name="string" type="text" value="" />
 <input type="submit" value="Rechercher" onclick="searchString()" />
@@ -14,30 +14,30 @@ $offres = $offreManager->getAllOffres();
         <option>Domaine</option>
 
       </select>
-<table class="table" border="1">
+<div class="col-lg-9 offset-lg-1">
+  <div class="table-responsive">
+  <table class="table" >
+    <thead>
+    <tr><th>Intitulé</th><th>Domaine</th><th>Lieu</th><th>Date début</th><th>Date fin</th><th></th></tr>
+    <tbody>
 
-  <tr><th>Intitulé</th><th>Domaine</th><th>Description</th><th>Mission</th><th>Profil Recherche</th><th>Type</th><th>Occupation</th><th>Durée</th><th>lieu</th><th>fourchette</th><th>contrainte</th><th>date début</th><th>date fin</th></tr>
-  <?php
-  foreach ($offres as $offre){?>
-    <tr>
-      <td><?php echo $offre->getIntituleOffre();?>
-      </td><td><?php echo $offre->getDomaineOffre();?>
-      </td><td><?php echo $offre->getDescriptionOffre();?>
-      </td><td><?php echo $offre->getMissionOffre();?>
-      </td><td><?php echo $offre->getProfilRechercheOffre();?>
-      </td><td><?php echo $offre->getTypeContratOffre();?>
-      </td><td><?php echo $offre->getTypeOccupationOffre();?>
-      </td><td><?php echo $offre->getDureeSemaineOffre();?>
-      </td><td><?php echo $offre->getLieuOffre();?>
-      </td><td><?php echo $offre->getFourchetteSalarialeOffre();?>
-      </td><td><?php echo $offre->getContrainteOffre();?>
-      </td><td><?php echo $offre->getDateDebutOffre();?>
-      </td><td><?php echo $offre->getDateFinOffre();?></td>
-    </tr>
-  <?php } ?>
-  </table>
+    <?php
+    foreach ($offres as $offre){?>
+      <tr>
+        <td><?php echo $offre->getIntituleOffre();?></td>
+        <td><?php echo $offre->getDomaineOffre();?></td>
+        <td><?php echo $offre->getLieuOffre();?></td>
+        <td><?php echo $offre->getDateDebutOffre();?></td>
+        <td><?php echo $offre->getDateFinOffre();?></td>
+        <td> <a class="boutonCarouselAccueil" href="index.php?page=9&offre=<?php echo $offre->getNumeroOffre();?>"> Voir l'offre </a></td>
+      </tr>
+    <?php } ?>
 
-  <a href="./index.php?page=4">Créer une nouvelle offre</a>
+  </tbody>
+    </table>
+  </div>
+</div>
+
 
 
 

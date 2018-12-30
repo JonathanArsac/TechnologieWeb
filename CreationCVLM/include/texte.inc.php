@@ -46,6 +46,9 @@ case 7:
 case 8:
 	include("pages/modifierOffre.inc.php");
 	break;
+	case 9:
+		include("pages/afficherOffre.inc.php");
+		break;
 case 10:
 // inclure ici la page choisirModeleCV
 	include("pages/choisirModeleCV.inc.php");

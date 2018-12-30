@@ -55,7 +55,7 @@ class PersonneManager{
 
 	public function getPersonneParNumeroPersonne($numeroPersonne) {
 			$listePersonnes = array(); // marche même sans  (tableau d'objets)
-			$sql = 'SELECT numeroPersonne,nomPersonne,prenomPersonne FROM personne where numeroPersonne='.$numeroPersonne;
+			$sql = 'SELECT numeroPersonne,nomPersonne,prenomPersonne,mailPersonne FROM personne where numeroPersonne='.$numeroPersonne;
 
 			$requete=$this->db->prepare($sql);
 			$requete->execute();
