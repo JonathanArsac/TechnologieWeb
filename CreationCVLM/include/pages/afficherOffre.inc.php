@@ -4,8 +4,14 @@
 $pdo = new Mypdo();
 $offreManager = new OffreManager($pdo);
 $personneManager = new PersonneManager($pdo);
+$candidatManager = new CandidatManager($pdo);
+
+if(isset($_POST["candidater"])){
+  $candidatManager->add($_SESSION["numeroPersonne"],$_GET["offre"]);
+}
 $offre = $offreManager->getOffreParNumero($_GET["offre"]);
 $recruteur = $personneManager->getPersonneParNumeroPersonne($offre[0]->getNumeroRecruteur());
+
 
 ?>
 <div class="col-lg-9 offset-lg-1">
@@ -70,8 +76,19 @@ $recruteur = $personneManager->getPersonneParNumeroPersonne($offre[0]->getNumero
 
   <?php
   if($_SESSION["demandeurPersonne"]==1){
+
+    $candidature = $candidatManager->getEtatPourCandidatPourUneOffre($_SESSION["numeroPersonne"],$_GET["offre"]);
+    if($candidature == NULL){
+      echo 	"<input class=\"bouton\" type=\"submit\" name=\"candidater\" value=\"Candidater\">";
+    }else if ($candidature[0]->getEtatDemande()=="2"){
+        echo 	"<span class=\"text-center\"><strong>Candidature en attente</strong></span>";
+    }else if ($candidature[0]->getEtatDemande()=="1"){
+        echo 	"<span class=\"text-center\"><strong>Candidature acceptée</strong></span>";
+      }else{
+          echo 	"<span class=\"text-center\"><strong>Candidature refusée</strong></span>";
+      }
   ?>
-	<input class="bouton" type="submit" value="Candidater">
+
   <?php
 }
 ?>

@@ -49,6 +49,20 @@ class CandidatManager{
 		return $listeCandidats;
 	}
 
+	public function getEtatPourCandidatPourUneOffre($idPers,$numeroOffre) {
+				$listeCandidats = array();
+			$sql = 'SELECT numeroPersonne, numeroOffre, etatDemande FROM candidat where numeroPersonne='.$idPers.' and numeroOffre='.$numeroOffre;
+
+			$requete=$this->db->prepare($sql);
+			$requete->execute();
+			while ($candidat=$requete->fetch(PDO::FETCH_OBJ)){
+				$listeCandidats[]= new Candidat($candidat);
+			}
+			$requete->closeCursor();
+
+		return $listeCandidats;
+	}
+
 	public function accepter($numP, $numO){
 		$sql = 'UPDATE candidat set etatDemande=1 WHERE numeroPersonne='.$numP.' AND numeroOffre='.$numO;
 
