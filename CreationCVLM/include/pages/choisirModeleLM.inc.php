@@ -50,7 +50,7 @@ if(isset($_POST["supprimerLM"]) && file_exists($_POST["supprimerLM"])){
 <h3 class="text-center">
   Tes LM
 </h3>
-<div id="containerLMEnregistre">
+<div id="containerLMEnregistre" class="text-center col-lg-8 offset-lg-4">
 
 
 <?php
@@ -58,7 +58,7 @@ if(file_exists($_SESSION["numeroPersonne"]."/LM")){
   $d = dir($_SESSION["numeroPersonne"]."/LM");
   while($entry = $d->read()) {
     if($entry!="." &&  $entry!=".." ){
-      echo "<div class=\"row text-center\"><div class=\"col-sm-2\"><a  href=\"".$_SESSION["numeroPersonne"]."/LM/".$entry."\">".$entry."</a></div><div class=\"col-sm-5\"> <form method=\"post\" action=\"#\"><input type=\"hidden\" name=\"supprimerLM\" value=\"".$_SESSION["numeroPersonne"]."/LM/".$entry."\"><input type=\"submit\" value=\"Supprimer\" /></form></div></div>";
+      echo "<div class=\"row text-center\"><div class=\"col-sm-2\"><a  href=\"".$_SESSION["numeroPersonne"]."/LM/".$entry."\">".$entry."</a></div><div class=\"col-sm-5\"> <form method=\"post\" action=\"#\"><input type=\"hidden\" name=\"supprimerLM\" value=\"".$_SESSION["numeroPersonne"]."/LM/".$entry."\"><input type=\"submit\" value=\"Supprimer\" class=\"boutonSupprimer\" /></form></div></div>";
     }
 
   }

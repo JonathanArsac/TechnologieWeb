@@ -25,8 +25,8 @@ case 2:
   break;
 
 case 3:
-	// inclure ici la page parcourirOffre
-	include("pages/parcourirOffre.inc.php");
+	// inclure ici la page parcourirOffreRecruteur
+	include("pages/parcourirOffreRecruteur.inc.php");
   break;
 
 case 4:
@@ -43,23 +43,25 @@ case 6:
 case 7:
 	include("pages/parcourirCandidatures.inc.php");
 	break;
-
-	case 10:
-		// inclure ici la page choisirModeleCV
-		include("pages/choisirModeleCV.inc.php");
-	  break;
-		case 11:
-			// inclure ici la page creerCV
-			include("pages/creerCV.inc.php");
-		  break;
-			case 12:
-				// inclure ici la page choisirModeleLM
-				include("pages/choisirModeleLM.inc.php");
-			  break;
-				case 13:
-					// inclure ici la page creerLM
-					include("pages/creerLM.inc.php");
-				  break;
+case 8:
+	include("pages/modifierOffre.inc.php");
+	break;
+case 10:
+// inclure ici la page choisirModeleCV
+	include("pages/choisirModeleCV.inc.php");
+	break;
+case 11:
+// inclure ici la page creerCV
+	include("pages/creerCV.inc.php");
+	break;
+case 12:
+// inclure ici la page choisirModeleLM
+	include("pages/choisirModeleLM.inc.php");
+	break;
+case 13:
+	// inclure ici la page creerLM
+	include("pages/creerLM.inc.php");
+  break;
 default : 	include_once('pages/seConnecter.inc.php');
 }
 
