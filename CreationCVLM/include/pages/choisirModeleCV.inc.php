@@ -68,13 +68,13 @@ if(isset($_POST["supprimerCV"]) && file_exists($_POST["supprimerCV"])){
 	    <span class="sr-only">Next</span>
 	  </a>
   </div>
-  <a class="col-sm-5 offset-sm-5" href="index.php?page=11&modele=0" id="boutonPasserModele">Passer</a>
+  <a class="col-sm-5 offset-sm-5 boutonPasserModele" href="index.php?page=11&modele=0" >Passer</a>
 </div>
 <div class="col-sm-12 col-lg-5 offset-lg-1">
 <h3 class="text-center">
   Tes CV
 </h3>
-<div id="containerCVEnregistre">
+<div id="containerCVEnregistre" class="text-center col-lg-8 offset-lg-4">
 
 
 <?php
@@ -82,7 +82,7 @@ if(file_exists($_SESSION["numeroPersonne"])){
   $d = dir($_SESSION["numeroPersonne"]);
   while($entry = $d->read()) {
     if($entry!="." &&  $entry!=".." ){
-      echo "<div class=\"row text-center\"><div class=\"col-sm-2\"><a  href=\"".$_SESSION["numeroPersonne"]."/".$entry."\">".$entry."</a></div><div class=\"col-sm-5\"> <form method=\"post\" action=\"#\"><input type=\"hidden\" name=\"supprimerCV\" value=\"".$_SESSION["numeroPersonne"]."/".$entry."\"><input type=\"submit\" value=\"Supprimer\" /></form></div></div>";
+      echo "<div class=\"row text-center\"><div class=\"col-sm-2\"><a  href=\"".$_SESSION["numeroPersonne"]."/".$entry."\">".$entry."</a></div><div class=\"col-sm-5\"> <form method=\"post\" action=\"#\"><input type=\"hidden\" name=\"supprimerCV\" value=\"".$_SESSION["numeroPersonne"]."/".$entry."\"><input type=\"submit\" value=\"Supprimer\" class=\"boutonSupprimer\"/></form></div></div>";
     }
 
   }

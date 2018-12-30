@@ -38,7 +38,7 @@ $dernieresOffres = $offreManager->getLesDernieresOffres(); //tableau de citation
 								echo "<p>".$derniereOffre->getLieuOffre()."</p>";
 								echo "<p>".$derniereOffre->getFourchetteSalarialeOffre()."</p>";
 								echo "<p>".substr($derniereOffre->getDescriptionOffre(),0,100)."...</p>";
-								echo "<a class=\"boutonCarouselAccueil\" href=\"visualiserOffre.inc.php?numeroOffre=".$derniereOffre->getNumeroOffre()."\"> Voir l'offre </a>";
+								echo "<a class=\"boutonCarouselAccueil\" href=\"index.php?page=9&offre=".$derniereOffre->getNumeroOffre()."\"> Voir l'offre </a>";
 							echo	"</div>";
 					echo	"</div>";
 

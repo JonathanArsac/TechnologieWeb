@@ -111,7 +111,9 @@ padding-top:2%;
   margin-top:10%;
 }
 
-
+.gestionModification{
+  margin-top: 5%;
+}
 
 
 /*
@@ -166,9 +168,20 @@ CV
 
 
 }
-
-
-.boutonTelecharger,.boutonEnregistrer,.boutonPasserModele{
+.bouton{
+  color:white;
+  background-color:#ff5950;
+  border-radius:15px;
+  text-align:center;
+  margin-top: 2%;
+  padding:1%;
+}
+.bouton:hover{
+  text-decoration: none;
+  color:white;
+  background-color:#ff6550;
+}
+.boutonTelecharger,.boutonEnregistrer,.boutonPasserModele,.boutonSupprimer{
   color:white;
   background-color:#ff5950;
   border-radius:15px;
@@ -177,6 +190,13 @@ CV
 
 
 }
+
+.boutonTelecharger:hover,.boutonEnregistrer:hover,.boutonPasserModele:hover,.boutonSupprimer:hover{
+  text-decoration: none;
+  color:white;
+  background-color:#ff6550;
+}
+
 
 #carouselModele{
   height:389px;
@@ -217,4 +237,8 @@ CV
   text-align:center;
   margin-top: 2%;
 
+}
+
+#containerLMEnregistre,#containerCVEnregistre{
+  margin-top: 4%;
 }

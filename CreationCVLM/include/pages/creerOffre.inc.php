@@ -1,54 +1,64 @@
-<h1>Créer une offre</h1>
 
+<h4 class="text-center">Créer une offre</h4>
 <?php
 if(empty($_POST['intituleOffre'])){
 ?>
-
-<form action="index.php?page=4" id="addOffre" method="post">
+<div class="col-lg-9 offset-lg-1">
+<form action="#" id="addOffre" method="post">
 
   <label for="intituleOffre">Intitulé : </label>
-    <input type="text" name="intituleOffre" id="intituleOffre" required/>
+    <textarea class="form-control" rows="1"  name="intituleOffre" required></textarea>
   </br>
   <label for="domaineOffre">Domaine : </label>
-    <input type="text" name="domaineOffre" id="domaineOffre" />
+    <textarea class="form-control" rows="1" name="domaineOffre" ></textarea>
+
   </br>
   <label for="descriptionOffre">Description : </label>
-    <input type="text" name="descriptionOffre" id="descriptionOffre"/>
+    <textarea class="form-control" rows="1" name="descriptionOffre"  ></textarea>
+
   </br>
   <label for="missionOffre">Mission : </label>
-    <input type="text" name="missionOffre" id="missionOffre"  />
+    <textarea class="form-control" rows="1"  name="missionOffre"  ></textarea>
+
   </br>
   <label for="profilRechercheOffre">Profil recherche : </label>
-    <input type="text" name="profilRechercheOffre" id="profilRechercheOffre"  />
+    <textarea class="form-control" rows="1" name="profilRechercheOffre" ></textarea>
+
   </br>
   <label for="typeContratOffre">Type Contrat : </label>
-    <input type="text" name="typeContratOffre" id="typeContratOffre"  />
+    <textarea class="form-control" rows="1" name="typeContratOffre" ></textarea>
+
   </br>
   <label for="typeOccupationOffre">Type Occupation : </label>
-    <input type="text" name="typeOccupationOffre" id="typeOccupationOffre"  />
+    <textarea class="form-control" rows="1" name="typeOccupationOffre" ></textarea>
+
   </br>
   <label for="dureeSemaineOffre">Durée semaine : </label>
-    <input type="text" name="dureeSemaineOffre" id="dureeSemaineOffre"  />
+    <textarea class="form-control" rows="1" name="dureeSemaineOffre" ></textarea>
+
   </br>
   <label for="lieuOffre">Lieu : </label>
-    <input type="text" name="lieuOffre" id="lieuOffre"  />
+    <textarea class="form-control" rows="1"  name="lieuOffre"  ></textarea>
+
   </br>
   <label for="fourchetteSalarialeOffre">Fourchette Salariale : </label>
-    <input type="text" name="fourchetteSalarialeOffre" id="fourchetteSalarialeOffre"  />
+    <textarea class="form-control" name="fourchetteSalarialeOffre"  ></textarea>
+
   </br>
   <label for="contrainteOffre">Contrainte : </label>
-    <input type="text" name="contrainteOffre" id="contrainteOffre"  />
+    <textarea class="form-control" rows="1"  name="contrainteOffre"  ></textarea>
+
   </br>
   <label for="dateDebutOffre">Date début : </label>
-    <input type="date" name="dateDebutOffre" id="dateDebutOffre" required/>
+    <input  class="date " type="date" name="dateDebutOffre" value="" required/>
   </br>
   <label for="dateFinOffre">Date fin : </label>
-    <input type="date" name="dateFinOffre" id="dateFinOffre" required/>
+    <input class="date " type="date" name="dateFinOffre"  value="" required/>
   </br>
-	<input type="submit" value="Valider" class="valider">
+	<input class="bouton" type="submit" value="Valider" class="valider">
 
 </form>
-
+</div>
 <?php
 }else{
 	$pdo = new Mypdo();
@@ -58,10 +68,12 @@ if(empty($_POST['intituleOffre'])){
 	$retour = $offreManager->ajouter($offre,$_SESSION['numeroPersonne']);
 
   if($retour){
-    echo "Offre ajoutée";
-  }
-  else{
-    echo "Offre refusée";
+    ?>
+    <div class="col-md-6 offset-3 gestionConnexion gestionModification text-center">
+      <p> Votre offre a bien été <span>ajouté</span> !  <br />
+       <strong>Redirection automatique dans 2 secondes.</strong> </p>
+    </div>
+    <?php
   }
   header("Refresh: 3;URL=index.php?page=2");
 }

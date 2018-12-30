@@ -7,7 +7,12 @@ $personneManager = new PersonneManager($pdo);
 
 $candidats = $candidatManager->getCandidatForOneRecruteur($_SESSION['numeroPersonne']);
 ?>
-<h1>Liste Candidat</h1>
+
+<h4 class="text-center">Vos candidats</h4>
+<div class="col-lg-9 offset-lg-1">
+
+
+<div class="table-responsive">
 
 
 <table class="table">
@@ -35,6 +40,8 @@ $candidats = $candidatManager->getCandidatForOneRecruteur($_SESSION['numeroPerso
         </tr>
   <?php  } } }?>
   </table>
+  </div>
+  </div>
   <?php
     if(isset($_GET["etat"])){
       if($_GET["etat"]==1){

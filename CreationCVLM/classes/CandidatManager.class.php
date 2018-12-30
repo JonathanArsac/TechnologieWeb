@@ -13,8 +13,8 @@ class CandidatManager{
 						return $requete->execute();
     }
 
-	public function supprimer($numeroPersonne){
-		$sql = 'DELETE FROM personne where numeroPersonne='.$numeroPersonne;
+	public function supprimer($numeroOffre){
+		$sql = 'DELETE FROM CANDIDAT where numeroOffre='.$numeroOffre;
 
 		$requete=$this->db->prepare($sql);
 		$requete->execute();
@@ -22,6 +22,7 @@ class CandidatManager{
 	}
 
 	public function getCandidatForOneRecruteur($idRecru) {
+		$listeCandidats = array();
 			$sql = 'SELECT c.numeroPersonne, c.numeroOffre, c.etatDemande FROM candidat c INNER JOIN offre o ON o.numeroOffre=c.numeroOffre where numeroRecruteur='.$idRecru;
 
 			$requete=$this->db->prepare($sql);
@@ -35,6 +36,7 @@ class CandidatManager{
 	}
 
 	public function getCandidatForOnePersonne($idPers) {
+				$listeCandidats = array();
 			$sql = 'SELECT numeroPersonne, numeroOffre, etatDemande FROM candidat where numeroPersonne='.$idPers;
 
 			$requete=$this->db->prepare($sql);
