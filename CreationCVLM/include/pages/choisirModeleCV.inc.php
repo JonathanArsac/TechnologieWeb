@@ -1,13 +1,20 @@
 
 
 
+<?php
+if(isset($_POST["supprimerCV"]) && file_exists($_POST["supprimerCV"])){
+  unlink($_POST["supprimerCV"]);
+}
+ ?>
 
 
 <div class="row">
 
 
 <div class="col-sm-12 col-lg-5">
-
+  <h3 class="text-center">
+    Créer un nouveau CV
+  </h3>
 
   <div id="carouselModele" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -64,16 +71,22 @@
   <a class="col-sm-5 offset-sm-5" href="index.php?page=11&modele=0" id="boutonPasserModele">Passer</a>
 </div>
 <div class="col-sm-12 col-lg-5 offset-lg-1">
-<p>
-  TES CV
-</p>
+<h3 class="text-center">
+  Tes CV
+</h3>
 <?php
-$d = dir($_SESSION["numeroPersonne"]);
-while($entry = $d->read()) {
-  if($entry!="."  )
-    echo "<a href=\"".$_SESSION["numeroPersonne"]."/".$entry."\">".$entry."</a><br>\n";
+if(file_exists($_SESSION["numeroPersonne"])){
+  $d = dir($_SESSION["numeroPersonne"]);
+  while($entry = $d->read()) {
+    if($entry!="." &&  $entry!=".." ){
+      echo "<a href=\"".$_SESSION["numeroPersonne"]."/".$entry."\">".$entry."</a>";
+      echo "<form method=\"post\" action=\"#\"><input type=\"hidden\" name=\"supprimerCV\" value=\"".$_SESSION["numeroPersonne"]."/".$entry."\"><input type=\"submit\" value=\"Supprimer\" /></form>";
+    }
+
+  }
+  $d->close();
 }
-$d->close();
+
 ?>
 
 </div>

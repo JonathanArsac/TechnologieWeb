@@ -43,36 +43,49 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
       $pdf->MultiCell(100,10,utf8_decode($_POST["coordonnees"]),0,1);
     }
     if($ordre=="zoneObjectif"){
-        $pdf->MultiCell(80,10,utf8_decode($_POST["objectifs"]),0,1);
+      $pdf->SetFont('Arial','B',18);
+      $pdf->Cell(140,5,"Publications",0,1);
+        $pdf->SetFont('Arial','',12);
+        $pdf->MultiCell(140,5,utf8_decode($_POST["objectifs"]),0,1);
     }
     if($ordre=="zoneExperience"){
-        $pdf->MultiCell(80,10,utf8_decode($_POST["experiences"]),0,1);
+      $pdf->SetFont('Arial','B',18);
+      $pdf->Cell(140,5,"Publications",0,1);
+        $pdf->SetFont('Arial','',12);
+        $pdf->MultiCell(140,5,utf8_decode($_POST["experiences"]),0,1);
     }
     if($ordre=="zoneFormation"){
-        $pdf->MultiCell(80,10,utf8_decode($_POST["formations"]),0,1);
+      $pdf->SetFont('Arial','B',18);
+      $pdf->Cell(140,5,"Publications",0,1);
+        $pdf->SetFont('Arial','',12);
+        $pdf->MultiCell(140,5,utf8_decode($_POST["formations"]),0,1);
     }
     if($ordre=="zoneCompetence"){
-        $pdf->MultiCell(80,10,utf8_decode($_POST["competences"]),0,1);
+      $pdf->SetFont('Arial','B',18);
+      $pdf->Cell(140,5,"Publications",0,1);
+        $pdf->SetFont('Arial','',12);
+        $pdf->MultiCell(140,5,utf8_decode($_POST["competences"]),0,1);
     }
     if($ordre=="zoneLangue"){
-        $pdf->MultiCell(80,10,utf8_decode($_POST["langues"]),0,1);
+        $pdf->MultiCell(140,5,utf8_decode($_POST["langues"]),0,1);
     }
     if($ordre=="zoneProjet"){
-        $pdf->MultiCell(80,10,utf8_decode($_POST["projets"]),0,1);
+        $pdf->MultiCell(140,5,utf8_decode($_POST["projets"]),0,1);
     }
     if($ordre=="zoneRealisation"){
-        $pdf->MultiCell(80,10,utf8_decode($_POST["realisations"]),0,1);
+        $pdf->MultiCell(140,5,utf8_decode($_POST["realisations"]),0,1);
     }
 
     if($ordre=="zoneCertification"){
-        $pdf->MultiCell(80,10,utf8_decode($_POST["certifications"]),0,1);
+        $pdf->MultiCell(140,5,utf8_decode($_POST["certifications"]),0,1);
     }
 
     if($ordre=="zonePublication"){
-        $pdf->MultiCell(80,10,utf8_decode($_POST["publications"]),0,1);
+        $pdf->Cell(140,5,"Publications",0,1);
+        $pdf->MultiCell(140,5,utf8_decode($_POST["publications"]),0,1);
     }
     if($ordre=="zoneReference"){
-        $pdf->MultiCell(80,10,utf8_decode($_POST["references"]),0,1);
+        $pdf->MultiCell(140,5,utf8_decode($_POST["references"]),0,1);
     }
 
 
@@ -86,23 +99,44 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
     if(!is_dir($_SESSION["numeroPersonne"])){
       mkdir($_SESSION["numeroPersonne"]);
     }
-    $pdf->Output('F',$_SESSION["numeroPersonne"]."/".$_POST["nomPDF"].".pdf");
+    if(empty($_POST["nomPDF"])){
+        $pdf->Output('F',$_SESSION["numeroPersonne"]."/SansNom.pdf");
+    }else{
+        $pdf->Output('F',$_SESSION["numeroPersonne"]."/".$_POST["nomPDF"].".pdf");
+    }
+
   }else{
     if(!is_dir($_SESSION["numeroPersonne"])){
       mkdir($_SESSION["numeroPersonne"]);
     }
-    $pdf->Output('F',$_SESSION["numeroPersonne"]."/".$_POST["nomPDF"].".pdf");
+    if(empty($_POST["nomPDF"])){
+        $pdf->Output('F',$_SESSION["numeroPersonne"]."/SansNom.pdf");
+    }else{
+        $pdf->Output('F',$_SESSION["numeroPersonne"]."/".$_POST["nomPDF"].".pdf");
+    }
+
     header("Content-type:application/pdf");
 
+    if(empty($_POST["nomPDF"])){
+        header("Content-Disposition:attachment;filename='SansNom.pdf'");
+    }else{
+        header("Content-Disposition:attachment;filename='".$_POST["nomPDF"].".pdf'");
+    }
 
-    header("Content-Disposition:attachment;filename='".$_POST["nomPDF"].".pdf'");
     ob_clean();
     flush();
 
-    readfile($_SESSION["numeroPersonne"]."/".$_POST["nomPDF"].".pdf");
-    unlink($_SESSION["numeroPersonne"]."/".$_POST["nomPDF"].".pdf");
+    if(empty($_POST["nomPDF"])){
+      readfile($_SESSION["numeroPersonne"]."/SansNom.pdf");
+      unlink($_SESSION["numeroPersonne"]."/SansNom.pdf");
+    }else{
+      readfile($_SESSION["numeroPersonne"]."/".$_POST["nomPDF"].".pdf");
+      unlink($_SESSION["numeroPersonne"]."/".$_POST["nomPDF"].".pdf");
+    }
+
 
   }
+  if(isset($target_file))
   unlink($target_file);
 }
 
@@ -110,7 +144,9 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
 
 <div class="container-fluid" onload="affichageModele()">
   <div class="row">
-    <div id="containerCheckBoxCV" class=" text-center container-fluid col-sm-12 col-md-3" >
+    <div  class=" text-center container-fluid col-sm-12 col-md-3" >
+      <div id="containerCheckBoxCV">
+          <h5 class="text-center">Catégories</h5>
 
       <div class="custom-control custom-checkbox ">
         <input type="checkbox" class="custom-control-input " id="checkboxEnTete" checked="checked" disabled>
@@ -156,20 +192,19 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
         <input type="checkbox" class="custom-control-input" id="checkboxReference" onclick="apparaitreZone(this.id)">
         <label class="custom-control-label" for="checkboxReference">Références</label>
       </div>
-
-
     </div>
+      </div>
     <div class="container-fluid col-sm-12 col-md-8 " id="containerCreationCV" ondrop="drop(event)" ondragover="allowDrop(event)">
       <form method="POST" action="#" enctype="multipart/form-data" accept-charset="UTF-8">
         <div>
           <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneEnTete" >
             <legend class="col-sm-2">En-Tête </legend>
             <div class="form-group" class="col-sm-8">
-              <input class="form-control" type="text" name="nom" placeholder="Titre" >
+              <input class="form-control" type="text" name="nom" placeholder="Nom" >
             </div>
             <div class="row">
               <div class="form-group col-sm-9">
-                 <textarea class="form-control" rows="5" name="coordonnees" >Coordonnées</textarea>
+                 <textarea class="form-control" rows="5" name="coordonnees" placeholder="Coordonnées"></textarea>
               </div>
               <div class="form-group col-sm-3 custom-file">
                 <input class="form-control custom-file-input" type="file" name="photo" placeholder="Photo" >
@@ -192,16 +227,17 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
             <legend class="col-sm-3">Expériences  </legend>
             <div class="row">
               <div class="form-group col-sm-12">
-                <input class="form-control" type="textarea" name="experiences" placeholder="Expériences" >
+                <textarea class="form-control" rows="5" name="experiences"  placeholder="Expériences"></textarea>
               </div>
             </div>
           </fieldset>
 
           <fieldset class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneFormation" ></fieldsetclass>
-            <legend class="col-sm-3">Formation </legend>
+            <legend class="col-sm-3">Formations </legend>
             <div class="row">
               <div class="form-group col-sm-12">
-                <input class="form-control" type="textarea" name="formations" placeholder="Formation" >
+                  <textarea class="form-control" rows="4" name="formations" placeholder="Formations" ></textarea>
+
               </div>
             </div>
           </fieldset>
@@ -210,7 +246,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
             <legend class="col-sm-3">Compétences  </legend>
             <div class="row">
               <div class="form-group col-sm-12">
-                <input class="form-control" type="textarea" name="competences" placeholder="Compétences" >
+                  <textarea class="form-control" rows="4" name="competences" placeholder="Compétences" ></textarea>
               </div>
             </div>
           </fieldset>
@@ -219,7 +255,8 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
             <legend class="col-sm-3">Langues  </legend>
             <div class="row">
               <div class="form-group col-sm-12">
-                <input class="form-control" type="textarea" name="langues" placeholder="Langues" >
+                  <textarea class="form-control" rows="3" name="langues" placeholder="Langues" ></textarea>
+
               </div>
             </div>
           </fieldset>
@@ -228,7 +265,8 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
             <legend class="col-sm-3">Projets réalisés  </legend>
             <div class="row">
               <div class="form-group col-sm-12">
-                <input class="form-control" type="textarea" name="projets" placeholder="Projets" >
+                  <textarea class="form-control" rows="4" name="projets" placeholder="Projets" ></textarea>
+
               </div>
             </div>
           </fieldset>
@@ -237,7 +275,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
             <legend class="col-sm-3">Réalisations </legend>
             <div class="row">
               <div class="form-group col-sm-12">
-                <input class="form-control" type="textarea" name="realisations" placeholder="Réalisations" >
+                  <textarea class="form-control" rows="4" name="realisations" placeholder="Réalisations" ></textarea>
               </div>
             </div>
           </fieldset>
@@ -246,7 +284,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
             <legend class="col-sm-3">Certifications </legend>
             <div class="row">
               <div class="form-group col-sm-12">
-                <input class="form-control" type="textarea" name="certifications" placeholder="Certifications" >
+                <textarea class="form-control" rows="3" name="certifications" placeholder="Certifications" ></textarea>
               </div>
             </div>
           </fieldset>
@@ -255,7 +293,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
             <legend class="col-sm-3">Publications  </legend>
             <div class="row">
               <div class="form-group col-sm-12">
-                <input class="form-control" type="textarea" name="publications" placeholder="Publications" >
+                <textarea class="form-control" rows="3" name="publications" placeholder="Publications"></textarea>
               </div>
             </div>
           </fieldset>
@@ -264,15 +302,18 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
             <legend class="col-sm-3">Références  </legend>
             <div class="row">
               <div class="form-group col-sm-12">
-                <input class="form-control" type="textarea" name="references" placeholder="Références" >
+                  <textarea class="form-control" rows="3" name="references"placeholder="Références" ></textarea>
               </div>
             </div>
           </fieldset>
         </div>
-        <input class="form-control" type="text" name="nomPDF" placeholder="Nom du PDF ">
-        <input type="submit" name="enregistrer" value="Enregistrer dans mon espace personnel " id="boutonEnregistrerCV">
-        <input type="submit" name="telecharger" value="Télécharger" id="boutonTelechargerCV">
-        <input type="hidden" name="ordreFormulaire" value="zoneEnTete~" id="ordreFormulaire"/>
+        <div id="containerBoutonsCreationCV">
+          <input class="form-control" type="text" name="nomPDF" placeholder="Nom du PDF ">
+          <input class="col-sm-5" type="submit" name="enregistrer" value="Enregistrer dans mon espace personnel " id="boutonEnregistrerCV">
+          <input class="col-sm-5 offset-sm-1" type="submit" name="telecharger" value="Télécharger" id="boutonTelechargerCV">
+          <input type="hidden" name="ordreFormulaire" value="zoneEnTete~" id="ordreFormulaire"/>
+        </div>
+
       </form>
     </div>
   </div>
@@ -355,6 +396,7 @@ function $_GET(param) {
 window.onload = function(){
   switch(parseInt($_GET("modele"))){
     case 0:
+      ordreFormulaire();
       break;
     case 1:
       zoneObjectif.style.display = "block";
@@ -365,6 +407,7 @@ window.onload = function(){
       checkboxFormation.checked=true;
       zoneProjet.style.display = "block";
       checkboxProjet.checked=true;
+      ordreFormulaire();
       break;
     case 2:
 
@@ -376,7 +419,7 @@ window.onload = function(){
     checkboxPublication.checked=true;
     zoneReference.style.display = "block";
     checkboxReference.checked=true;
-
+    ordreFormulaire();
       break;
     case 3:
     zoneExperience.style.display = "block";
@@ -385,7 +428,7 @@ window.onload = function(){
     checkboxLangue.checked=true;
     zoneCertification.style.display = "block";
     checkboxCertification.checked=true;
-
+    ordreFormulaire();
       break;
     case 4:
     zoneObjectif.style.display = "block";
@@ -400,7 +443,7 @@ window.onload = function(){
     checkboxLangue.checked=true;
     zoneProjet.style.display = "block";
     checkboxProjet.checked=true;
-
+    ordreFormulaire();
       break;
     default:
 

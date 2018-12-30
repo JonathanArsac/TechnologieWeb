@@ -152,12 +152,13 @@ CV
 
 .zoneCV{
   display: none;
+  margin-bottom: 2%;
 }
 #zoneEnTete{
   display: block;
 }
 
-#containerCheckBoxCV{
+#containerCheckBoxCV,#containerBoutonsCreationCV{
   border: 1px solid #E5E6E8;
   box-shadow:0 0 8px #ccc;
   border-radius:6px;
@@ -178,7 +179,7 @@ CV
 }
 
 #carouselModele{
-  height:400px;
+  height:389px;
 }
 .card-footer a{
   color:white;
@@ -187,4 +188,20 @@ CV
   text-align:center;
   margin-top: 2%;
   padding:2%;
+}
+
+#containerBoutonsCreationCV{
+  margin-top: 2%;
+  padding:2%;
+}
+
+#containerCheckBoxCV{
+  padding-left:3%;
+    padding-bottom:1.5%;
+
+}
+#containerCheckBoxCV h5{
+  padding-bottom:1%;
+    padding-top:1.5%;
+
 }
