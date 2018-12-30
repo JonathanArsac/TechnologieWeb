@@ -11,7 +11,9 @@ $offres = $offreManager->getAllOffresDunRecruteur($_SESSION['numeroPersonne']);
 
   <tr><th>Intitulé</th><th>Domaine</th><th>Description</th><th>Mission</th><th>Profil Recherche</th><th>Type</th><th>Occupation</th><th>Durée</th><th>lieu</th><th>fourchette</th><th>contrainte</th><th>date début</th><th>date fin</th></tr>
   <?php
-  foreach ($offres as $offre){?>
+  foreach ($offres as $offre){
+    if(date("Y-m-d")>$offre->getDateDebutOffre() && date("Y-m-d")<$offre->getDateFinOffre()){
+    ?>
     <tr>
       <td><?php echo $offre->getIntituleOffre();?>
       </td><td><?php echo $offre->getDomaineOffre();?>
@@ -27,7 +29,7 @@ $offres = $offreManager->getAllOffresDunRecruteur($_SESSION['numeroPersonne']);
       </td><td><?php echo $offre->getDateDebutOffre();?>
       </td><td><?php echo $offre->getDateFinOffre();?></td>
     </tr>
-  <?php } ?>
+  <?php } } ?>
   </table>
 
   <a href="./index.php?page=4">Créer une nouvelle offre</a>

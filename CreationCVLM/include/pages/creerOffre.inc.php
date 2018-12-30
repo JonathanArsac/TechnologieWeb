@@ -63,6 +63,6 @@ if(empty($_POST['intituleOffre'])){
   else{
     echo "Offre refusée";
   }
-  header("Refresh: 3;URL=index.php?page=3");
+  header("Refresh: 3;URL=index.php?page=2");
 }
 ?>

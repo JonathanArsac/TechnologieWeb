@@ -12,7 +12,10 @@ $offres = $offreManager->getAllOffres();
 
   <tr><th>Intitulé</th><th>Domaine</th><th>Description</th><th>Mission</th><th>Profil Recherche</th><th>Type</th><th>Occupation</th><th>Durée</th><th>lieu</th><th>fourchette</th><th>contrainte</th><th>date début</th><th>date fin</th></tr>
   <?php
-  foreach ($offres as $offre){?>
+  foreach ($offres as $offre){
+    if(date("Y-m-d")>$offre->getDateDebutOffre() && date("Y-m-d")<$offre->getDateFinOffre()){
+
+    ?>
     <tr>
       <td><?php echo $offre->getIntituleOffre();?>
       </td><td><?php echo $offre->getDomaineOffre();?>
@@ -32,7 +35,7 @@ $offres = $offreManager->getAllOffres();
       <?php }  ?>
 
     </tr>
-  <?php } ?>
+  <?php } } ?>
   </table>
   <?php if (isset($_SESSION['demandeurPersonne']) && $_SESSION['demandeurPersonne']==0 ){ ?>
   <a href="./index.php?page=4">Créer une nouvelle offre</a>

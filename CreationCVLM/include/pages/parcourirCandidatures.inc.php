@@ -1,6 +1,7 @@
 <?php
 $pdo = new Mypdo();
 $candidatManager = new CandidatManager($pdo);
+$offreManager = new OffreManager($pdo);
 $candidats = $candidatManager->getCandidatForOnePersonne($_SESSION['numeroPersonne']);
 ?>
 <h1>Liste Candidatures</h1>
@@ -10,7 +11,9 @@ $candidats = $candidatManager->getCandidatForOnePersonne($_SESSION['numeroPerson
 
   <tr><th>Numero Offre</th><th>Etat Demande</th></tr>
   <?php
-  foreach ($candidats as $candidat){ ?>
+  foreach ($candidats as $candidat){
+    if($offreManager->verifDate($candidat->getNumeroOffre())){
+     ?>
     <tr>
       </td><td><?php echo $candidat->getNumeroOffre();?>
       </td><td><?php if($candidat->getEtatDemande()==2){
@@ -21,5 +24,5 @@ $candidats = $candidatManager->getCandidatForOnePersonne($_SESSION['numeroPerson
         echo "Refusé";
       } ?>
     </tr>
-  <?php }?>
+  <?php } }?>
   </table>
