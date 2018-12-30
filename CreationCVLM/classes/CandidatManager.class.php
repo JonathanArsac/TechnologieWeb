@@ -5,11 +5,11 @@ class CandidatManager{
 		$this->db=$db;
 		}
 
-    public function ajouter($personne){
+    public function add($numP,$numO){
             $requete = $this->db->prepare(
-						'INSERT INTO candidat (numeroPersonne,numeroOffre) VALUES (:numeroPersonne,:numeroOffre)');
-						$requete -> bindValue(':numeroPersonne',$candidat->getNumeroPersonne());
-            $requete -> bindValue(':numeroOffre',$candidat->getNumeroOffre());
+						'INSERT INTO candidat (numeroPersonne,numeroOffre,etatDemande) VALUES (:numeroPersonne,:numeroOffre,2)');
+						$requete -> bindValue(':numeroPersonne',$numP);
+            $requete -> bindValue(':numeroOffre',$numO);
 						return $requete->execute();
     }
 
@@ -23,7 +23,7 @@ class CandidatManager{
 
 	public function getCandidatForOneRecruteur($idRecru) {
 			$listePersonnes = array(); // marche même sans  (tableau d'objets)
-			$sql = 'SELECT c.numeroPersonne, c.numeroOffre FROM candidat c INNER JOIN offre o ON o.numeroOffre=c.numeroOffre where numeroRecruteur='.$idRecru;
+			$sql = 'SELECT c.numeroPersonne, c.numeroOffre, c.etatDemande FROM candidat c INNER JOIN offre o ON o.numeroOffre=c.numeroOffre where numeroRecruteur='.$idRecru;
 
 			$requete=$this->db->prepare($sql);
 			$requete->execute();
@@ -33,6 +33,22 @@ class CandidatManager{
 			$requete->closeCursor();
 
 		return $listeCandidats;
+	}
+
+	public function accepter($numP, $numO){
+		$sql = 'UPDATE candidat set etatDemande=1 WHERE numeroPersonne='.$numP.' AND numeroOffre='.$numO;
+
+		$requete=$this->db->prepare($sql);
+		$requete->execute();
+		$requete->closeCursor();
+	}
+
+	public function refuser($numP, $numO){
+		$sql = 'UPDATE candidat set etatDemande=0 WHERE numeroPersonne='.$numP.' AND numeroOffre='.$numO;
+
+		$requete=$this->db->prepare($sql);
+		$requete->execute();
+		$requete->closeCursor();
 	}
 
 }

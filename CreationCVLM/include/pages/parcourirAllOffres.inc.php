@@ -2,6 +2,7 @@
 $pdo = new Mypdo();
 $offreManager = new OffreManager ($pdo);
 $personneManager = new PersonneManager($pdo);
+$candidatManager = new CandidatManager ($pdo);
 $offres = $offreManager->getAllOffres();
 ?>
 <h1>Liste Offre</h1>
@@ -25,9 +26,18 @@ $offres = $offreManager->getAllOffres();
       </td><td><?php echo $offre->getFourchetteSalarialeOffre();?>
       </td><td><?php echo $offre->getContrainteOffre();?>
       </td><td><?php echo $offre->getDateDebutOffre();?>
-      </td><td><?php echo $offre->getDateFinOffre();?></td>
+      </td><td><?php echo $offre->getDateFinOffre();?>
+      </td>  <?php if (isset($_SESSION['demandeurPersonne']) && $_SESSION['demandeurPersonne']==1 ){ ?>
+        <td> <a href="./index.php?page=5&amp;idOffre=<?php echo $offre->getNumeroOffre() ?>">Candidater</a> </td>
+      <?php }  ?>
+
     </tr>
   <?php } ?>
   </table>
-
+  <?php if (isset($_SESSION['demandeurPersonne']) && $_SESSION['demandeurPersonne']==0 ){ ?>
   <a href="./index.php?page=4">Créer une nouvelle offre</a>
+  <?php }
+  if(isset($_GET['idOffre'])){
+    $candidatManager->add($_SESSION['numeroPersonne'],$_GET['idOffre']);
+  }
+  ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 27 déc. 2018 à 17:22
+-- Généré le :  Dim 30 déc. 2018 à 13:31
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -31,16 +31,24 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `candidat`;
 CREATE TABLE IF NOT EXISTS `candidat` (
   `numeroPersonne` int(11) NOT NULL,
-  `numeroOffre` int(11) NOT NULL
+  `numeroOffre` int(11) NOT NULL,
+  `etatDemande` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `candidat`
 --
 
-INSERT INTO `candidat` (`numeroPersonne`, `numeroOffre`) VALUES
-(16, 18),
-(16, 18);
+INSERT INTO `candidat` (`numeroPersonne`, `numeroOffre`, `etatDemande`) VALUES
+(16, 18, 1),
+(18, 16, 1),
+(5, 18, 2),
+(16, 3, 2),
+(16, 21, 2),
+(16, 21, 2),
+(16, 1, 2),
+(16, 4, 2),
+(16, 19, 2);
 
 -- --------------------------------------------------------
 

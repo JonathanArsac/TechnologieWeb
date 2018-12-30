@@ -2,6 +2,7 @@
 class Candidat{
     private $numeroPersonne;
     private $numeroOffre;
+    private $etatDemande;
 
     public function __construct($valeurs=array()) {
     	if (!empty($valeurs))
@@ -17,6 +18,9 @@ public function affecte($donnees){
       case 'numeroOffre':
   			$this->setNumeroOffre($valeur);
   			break;
+      case 'etatDemande':
+        $this->setEtatDemande($valeur);
+        break;
 		}
 	}
 }
@@ -31,6 +35,12 @@ public function affecte($donnees){
 	}
 	public function setNumeroOffre($num){
 		$this->numeroOffre=$num;
+	}
+  public function getEtatDemande(){
+		return $this->etatDemande;
+	}
+	public function setEtatDemande($etat){
+		$this->etatDemande=$etat;
 	}
 }
 ?>

@@ -58,10 +58,10 @@ if(empty($_POST['intituleOffre'])){
 	$retour = $offreManager->ajouter($offre,$_SESSION['numeroPersonne']);
 
   if($retour){
-    echo "oui";
+    echo "Offre ajoutée";
   }
   else{
-    echo "non";
+    echo "Offre refusée";
   }
   header("Refresh: 3;URL=index.php?page=3");
 }
