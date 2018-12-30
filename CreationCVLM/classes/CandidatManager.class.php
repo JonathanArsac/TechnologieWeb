@@ -22,8 +22,20 @@ class CandidatManager{
 	}
 
 	public function getCandidatForOneRecruteur($idRecru) {
-			$listePersonnes = array(); // marche même sans  (tableau d'objets)
 			$sql = 'SELECT c.numeroPersonne, c.numeroOffre, c.etatDemande FROM candidat c INNER JOIN offre o ON o.numeroOffre=c.numeroOffre where numeroRecruteur='.$idRecru;
+
+			$requete=$this->db->prepare($sql);
+			$requete->execute();
+			while ($candidat=$requete->fetch(PDO::FETCH_OBJ)){
+				$listeCandidats[]= new Candidat($candidat);
+			}
+			$requete->closeCursor();
+
+		return $listeCandidats;
+	}
+
+	public function getCandidatForOnePersonne($idPers) {
+			$sql = 'SELECT numeroPersonne, numeroOffre, etatDemande FROM candidat where numeroPersonne='.$idPers;
 
 			$requete=$this->db->prepare($sql);
 			$requete->execute();

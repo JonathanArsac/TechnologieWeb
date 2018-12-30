@@ -40,6 +40,9 @@ case 5:
 case 6:
 	include("pages/parcourirCandidat.inc.php");
 	break;
+case 7:
+	include("pages/parcourirCandidatures.inc.php");
+	break;
 
 	case 10:
 		// inclure ici la page choisirModeleCV
