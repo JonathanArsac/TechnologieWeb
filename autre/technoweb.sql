@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 30 déc. 2018 à 13:31
+-- Généré le :  Dim 30 déc. 2018 à 14:24
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -42,13 +42,16 @@ CREATE TABLE IF NOT EXISTS `candidat` (
 INSERT INTO `candidat` (`numeroPersonne`, `numeroOffre`, `etatDemande`) VALUES
 (16, 18, 1),
 (18, 16, 1),
-(5, 18, 2),
+(5, 18, 0),
 (16, 3, 2),
-(16, 21, 2),
-(16, 21, 2),
+(16, 21, 0),
+(16, 21, 0),
 (16, 1, 2),
 (16, 4, 2),
-(16, 19, 2);
+(16, 19, 2),
+(16, 23, 2),
+(16, 24, 1),
+(16, 22, 0);
 
 -- --------------------------------------------------------
 
@@ -74,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `offre` (
   `dateDebutOffre` date NOT NULL,
   `dateFinOffre` date NOT NULL,
   PRIMARY KEY (`numeroOffre`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `offre`
@@ -89,7 +92,10 @@ INSERT INTO `offre` (`numeroOffre`, `numeroRecruteur`, `intituleOffre`, `domaine
 (18, 17, 'int', 'dom', 'desc', 'mis', 'prof', 'tc', 'to', 'dur', 'lieu', 'four', 'cont', '2000-02-20', '2000-02-20'),
 (19, 17, 'a', '', 'aa', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', '0001-01-01', '0001-01-01'),
 (20, 17, 'a', '', '', '', '', '', '', '', '', '', '', '0001-01-01', '0001-01-01'),
-(21, 17, 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', '0001-01-01', '0001-01-01');
+(21, 17, 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', '0001-01-01', '0001-01-01'),
+(22, 17, 'int', 'dom', 'desc', 'mis', 'pro', 'co', 'oc', 'dur', 'lieu', 'four', 'cont', '2018-01-01', '2019-12-31'),
+(23, 17, '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2018-12-12', '2019-12-31'),
+(24, 17, '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '2018-03-31', '2019-12-31');
 
 -- --------------------------------------------------------
 
