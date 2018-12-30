@@ -145,7 +145,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
 <div class="container-fluid" onload="affichageModele()">
   <div class="row">
     <div  class=" text-center container-fluid col-sm-12 col-md-3" >
-      <div id="containerCheckBoxCV">
+      <div class="containerCheckBox">
           <h5 class="text-center">Catégories</h5>
 
       <div class="custom-control custom-checkbox ">
@@ -194,7 +194,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
       </div>
     </div>
       </div>
-    <div class="container-fluid col-sm-12 col-md-8 " id="containerCreationCV" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="container-fluid col-sm-12 col-md-8 containerCreation "  ondrop="drop(event)" ondragover="allowDrop(event)">
       <form method="POST" action="#" enctype="multipart/form-data" accept-charset="UTF-8">
         <div>
           <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneEnTete" >
@@ -307,10 +307,10 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
             </div>
           </fieldset>
         </div>
-        <div id="containerBoutonsCreationCV">
+        <div class="containerBoutonsCreation">
           <input class="form-control" type="text" name="nomPDF" placeholder="Nom du PDF ">
-          <input class="col-sm-5" type="submit" name="enregistrer" value="Enregistrer dans mon espace personnel " id="boutonEnregistrerCV">
-          <input class="col-sm-5 offset-sm-1" type="submit" name="telecharger" value="Télécharger" id="boutonTelechargerCV">
+          <input class="col-sm-5 boutonEnregistrer" type="submit" name="enregistrer" value="Enregistrer dans mon espace personnel " id="boutonEnregistrerCV">
+          <input class="col-sm-5 offset-sm-1 boutonTelecharger" type="submit" name="telecharger" value="Télécharger" id="boutonTelechargerCV">
           <input type="hidden" name="ordreFormulaire" value="zoneEnTete~" id="ordreFormulaire"/>
         </div>
 

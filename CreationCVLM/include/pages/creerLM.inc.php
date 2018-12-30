@@ -53,9 +53,10 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
   if(isset($_POST["enregistrer"])){
     if(!is_dir($_SESSION["numeroPersonne"])){
       mkdir($_SESSION["numeroPersonne"]);
-      if(!is_dir($_SESSION["numeroPersonne"]."/LM")){
-          mkdir($_SESSION["numeroPersonne"]."/LM");
-      }
+
+    }
+    if(!file_exists($_SESSION["numeroPersonne"]."/LM")){
+        mkdir($_SESSION["numeroPersonne"]."/LM");
     }
     if(empty($_POST["nomPDF"])){
         $pdf->Output('F',$_SESSION["numeroPersonne"]."/LM/SansNom.pdf");
@@ -66,9 +67,11 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
   }else{
     if(!is_dir($_SESSION["numeroPersonne"])){
       mkdir($_SESSION["numeroPersonne"]);
-      if(!is_dir($_SESSION["numeroPersonne"]."/LM")){
-          mkdir($_SESSION["numeroPersonne"]."/LM");
-      }
+
+    }
+    if(!is_dir($_SESSION["numeroPersonne"]."/LM")){
+        mkdir($_SESSION["numeroPersonne"]."/LM");
+
     }
     if(empty($_POST["nomPDF"])){
         $pdf->Output('F',$_SESSION["numeroPersonne"]."/LM/SansNom.pdf");
@@ -104,7 +107,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
 <div class="container-fluid" onload="affichageModele()">
   <div class="row">
     <div  class=" text-center container-fluid col-sm-12 col-md-3" >
-      <div id="containerCheckBoxCV">
+      <div class="containerCheckBox">
           <h5 class="text-center">Catégories</h5>
 
       <div class="custom-control custom-checkbox ">
@@ -124,8 +127,8 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
         <label class="custom-control-label" for="checkboxCivilite">Civilité</label>
       </div>
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="checkboxMotivations" onclick="apparaitreZone(this.id)">
-        <label class="custom-control-label" for="checkboxCompetence">Motivations</label>
+        <input type="checkbox" class="custom-control-input" id="checkboxMotivation" onclick="apparaitreZone(this.id)">
+        <label class="custom-control-label" for="checkboxMotivation">Motivations</label>
       </div>
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" id="checkboxPolitesse" onclick="apparaitreZone(this.id)">
@@ -133,7 +136,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
       </div>
     </div>
     </div>
-    <div class="container-fluid col-sm-12 col-md-8 " id="containerCreationCV" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="container-fluid col-sm-12 col-md-8 containerCreation"  ondrop="drop(event)" ondragover="allowDrop(event)">
       <form method="POST" action="#" enctype="multipart/form-data" accept-charset="UTF-8">
         <div>
           <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneEnTete2" >
@@ -152,14 +155,14 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
             <legend class="col-sm-2">Date  </legend>
             <div class="row">
               <div class="form-group col-sm-12">
-                 <textarea class="form-control" rows="1" name="date" ></textarea>
+                 <textarea class="form-control" rows="1" name="date" placeholder="Date" ></textarea>
 
               </div>
             </div>
           </fieldset>
 
           <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneCoordonneesEmployeur" >
-            <legend class="col-sm-3">Coordonnées Employeur  </legend>
+            <legend class="col-sm-12">Coordonnées Employeur  </legend>
             <div class="row">
               <div class="form-group col-sm-12">
                 <textarea class="form-control" rows="4" name="coordonneesEmployeur"  placeholder="Coordonnées"></textarea>
@@ -177,7 +180,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
             </div>
           </fieldset>
 
-          <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneMotivations" >
+          <fieldset  class="zoneCV col-sm-12" draggable="true" ondragstart="drag(event)" id="zoneMotivation" >
             <legend class="col-sm-3">Motivations  </legend>
             <div class="row">
               <div class="form-group col-sm-12">
@@ -200,7 +203,7 @@ if(isset($_POST["enregistrer"]) || isset($_POST["telecharger"])){
         </div>
         <div class="containerBoutonsCreation">
           <input class="form-control" type="text" name="nomPDF" placeholder="Nom du PDF ">
-          <input class="col-sm-5 boutonEnregistrerCV" type="submit" name="enregistrer" value="Enregistrer dans mon espace personnel ">
+          <input class="col-sm-5 boutonEnregistrer" type="submit" name="enregistrer" value="Enregistrer dans mon espace personnel ">
           <input class="col-sm-5 offset-sm-1 boutonTelecharger" type="submit" name="telecharger" value="Télécharger" >
           <input type="hidden" name="ordreFormulaire" value="zoneEnTete2~" id="ordreFormulaire"/>
         </div>
