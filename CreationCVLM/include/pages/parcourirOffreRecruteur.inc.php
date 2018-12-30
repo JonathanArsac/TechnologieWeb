@@ -26,7 +26,7 @@ $offres = $offreManager->getAllOffresDunRecruteur($_SESSION['numeroPersonne']);
 
   <?php
   foreach ($offres as $offre){
-
+    if($offreManager->verifDate($offre->getNumeroOffre())){
     ?>
     <tr>
       <td><?php echo $offre->getIntituleOffre();?></td>
@@ -37,7 +37,7 @@ $offres = $offreManager->getAllOffresDunRecruteur($_SESSION['numeroPersonne']);
       <td><a class="bouton" href="index.php?page=8&offre=<?php echo $offre->getNumeroOffre();?>"> Modifier Offre </a></td>
       <td><form method="post" action="#"><input type="hidden" name="supprimer" value=<?php echo $offre ->getNumeroOffre() ?>><input type="submit" value="X" ></form></td>
     </tr>
-  <?php  } ?>
+  <?php  } } ?>
   </tbody>
   </table>
 </div>

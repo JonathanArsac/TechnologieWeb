@@ -20,7 +20,10 @@ $offres = $offreManager->getAllOffres();
     <tbody>
 
     <?php
-    foreach ($offres as $offre){?>
+    foreach ($offres as $offre){
+      if($offreManager->verifDate($offre->getNumeroOffre())){
+
+      ?>
       <tr class="ligneTab">
         <td><?php echo $offre->getIntituleOffre();?></td>
         <td class="sdomaine"><?php echo $offre->getDomaineOffre();?></td>
@@ -29,7 +32,7 @@ $offres = $offreManager->getAllOffres();
         <td><?php echo $offre->getDateFinOffre();?></td>
         <td> <a class="boutonCarouselAccueil" href="index.php?page=9&offre=<?php echo $offre->getNumeroOffre();?>"> Voir l'offre </a></td>
       </tr>
-    <?php } ?>
+    <?php } } ?>
 
   </tbody>
     </table>
